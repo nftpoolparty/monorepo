@@ -4,6 +4,7 @@ import { Connect } from "../components/Connect";
 import { Connected } from "../components/Connected";
 import { Account } from "../components/Account";
 import { NetworkSwitcher } from "../components/NetworkSwitcher";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
 export const metadata = {
   title: "wagmi",
@@ -20,14 +21,7 @@ export default function RootLayout({
         <Providers>
           <Connect />
 
-          <Connected>
-            <Account />
-            <hr />
-            <NetworkSwitcher />
-            <hr />
-
-            {children}
-          </Connected>
+          <Connected>{children}</Connected>
         </Providers>
       </body>
     </html>

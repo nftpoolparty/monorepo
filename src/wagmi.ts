@@ -6,6 +6,8 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 import { publicProvider } from 'wagmi/providers/public'
 
+import '@rainbow-me/rainbowkit/styles.css';
+
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     scrollTestnet,
@@ -37,3 +39,5 @@ export const config = createConfig({
   publicClient,
   webSocketPublicClient,
 })
+
+export { chains}
