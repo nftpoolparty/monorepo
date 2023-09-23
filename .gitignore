@@ -48,3 +48,5 @@ next-env.d.ts
 # forge
 out
 cache
+
+src/generated.ts
