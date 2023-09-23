@@ -5,9 +5,17 @@ import "forge-std/Test.sol";
 import "../src/NftPoolFactory.sol";
 
 contract NftPoolFactoryTest is Test {
-    function setUp() public {}
+    NftPoolFactory factory;
+    function setUp() public {
+        factory = new NftPoolFactory();
+    }
 
-    function testIncrement() public {}
+    function test_getLiquidityToProvide_returnsCorrectValue() public {
+        uint256 initialPrice = 0.0002 ether;
+        uint256 maxSupply = 10;
 
-    function testSetNumber(uint256 x) public {}
+        uint256 expected = 0.0001 ether * maxSupply;
+
+        assertEq(factory.getLiquidityToProvide(maxSupply, initialPrice), expected);
+    }
 }

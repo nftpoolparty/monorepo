@@ -1,10 +1,16 @@
 import { Account } from "../components/Account";
 import { Connect } from "../components/Connect";
 import { Connected } from "../components/Connected";
-import { Counter } from "../components/Counter";
+import { Create } from "../components/Create";
 import { NetworkSwitcher } from "../components/NetworkSwitcher";
 
-export function Page() {
+export default function Page({
+  params,
+  searchParams,
+}: {
+  params: {};
+  searchParams?: { [key: string]: string | string[] };
+}) {
   return (
     <>
       <h1 className="text-3xl font-bold underline">
@@ -16,12 +22,12 @@ export function Page() {
       <Connected>
         <Account />
         <hr />
-        <Counter />
-        <hr />
         <NetworkSwitcher />
+        <hr />
+        {/* page section: */}
+        <Create />
+        <hr />
       </Connected>
     </>
   );
 }
-
-export default Page;

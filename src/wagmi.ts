@@ -9,8 +9,8 @@ import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    mainnet,
-    ...(process.env.NODE_ENV === 'development' ? [goerli, foundry] : []),
+    foundry
+    // ...(process.env.NODE_ENV === 'development' ? [goerli, foundry] : []),
   ],
   [
     publicProvider(),

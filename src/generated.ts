@@ -674,13 +674,13 @@ export const nftPoolFactoryABI = [
         name: 'erc721Address',
         internalType: 'address',
         type: 'address',
-        indexed: false,
+        indexed: true,
       },
     ],
     name: 'Created',
   },
   {
-    stateMutability: 'nonpayable',
+    stateMutability: 'payable',
     type: 'function',
     inputs: [
       { name: '_name', internalType: 'string', type: 'string' },
@@ -694,13 +694,23 @@ export const nftPoolFactoryABI = [
       { name: 'contractAddress', internalType: 'address', type: 'address' },
     ],
   },
+  {
+    stateMutability: 'pure',
+    type: 'function',
+    inputs: [
+      { name: '_maxSupply', internalType: 'uint256', type: 'uint256' },
+      { name: '_initialPrice', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getLiquidityToProvide',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+  },
 ] as const
 
 /**
  *
  */
 export const nftPoolFactoryAddress = {
-  31337: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  31337: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
 } as const
 
 /**
@@ -2450,6 +2460,57 @@ export function useMultiEdition721TransferEvent(
     eventName: 'Transfer',
     ...config,
   } as UseContractEventConfig<typeof multiEdition721ABI, 'Transfer'>)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__.
+ *
+ *
+ */
+export function useNftPoolFactoryRead<
+  TFunctionName extends string,
+  TSelectData = ReadContractResult<typeof nftPoolFactoryABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof nftPoolFactoryABI, TFunctionName, TSelectData>,
+    'abi' | 'address'
+  > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
+) {
+  return useContractRead({
+    abi: nftPoolFactoryABI,
+    address: nftPoolFactoryAddress[31337],
+    ...config,
+  } as UseContractReadConfig<
+    typeof nftPoolFactoryABI,
+    TFunctionName,
+    TSelectData
+  >)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"getLiquidityToProvide"`.
+ *
+ *
+ */
+export function useNftPoolFactoryGetLiquidityToProvide<
+  TFunctionName extends 'getLiquidityToProvide',
+  TSelectData = ReadContractResult<typeof nftPoolFactoryABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof nftPoolFactoryABI, TFunctionName, TSelectData>,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
+) {
+  return useContractRead({
+    abi: nftPoolFactoryABI,
+    address: nftPoolFactoryAddress[31337],
+    functionName: 'getLiquidityToProvide',
+    ...config,
+  } as UseContractReadConfig<
+    typeof nftPoolFactoryABI,
+    TFunctionName,
+    TSelectData
+  >)
 }
 
 /**
