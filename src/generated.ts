@@ -7,6 +7,8 @@ import {
   UsePrepareContractWriteConfig,
   useContractEvent,
   UseContractEventConfig,
+  useNetwork,
+  useChainId,
   Address,
 } from 'wagmi'
 import {
@@ -647,7 +649,8 @@ export const multiEdition721ABI = [
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export const nftPoolFactoryABI = [
   {
@@ -691,14 +694,17 @@ export const nftPoolFactoryABI = [
 ] as const
 
 /**
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export const nftPoolFactoryAddress = {
   31337: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
+  534353: '0x131F554482F26206A33acf5A22E89A91c5D91f9A',
 } as const
 
 /**
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export const nftPoolFactoryConfig = {
   address: nftPoolFactoryAddress,
@@ -2397,7 +2403,8 @@ export function useMultiEdition721TransferEvent(
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryRead<
   TFunctionName extends string,
@@ -2408,9 +2415,13 @@ export function useNftPoolFactoryRead<
     'abi' | 'address'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractRead({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     ...config,
   } as UseContractReadConfig<
     typeof nftPoolFactoryABI,
@@ -2422,7 +2433,8 @@ export function useNftPoolFactoryRead<
 /**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"getLiquidityToProvide"`.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryGetLiquidityToProvide<
   TFunctionName extends 'getLiquidityToProvide',
@@ -2433,9 +2445,13 @@ export function useNftPoolFactoryGetLiquidityToProvide<
     'abi' | 'address' | 'functionName'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractRead({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     functionName: 'getLiquidityToProvide',
     ...config,
   } as UseContractReadConfig<
@@ -2448,7 +2464,8 @@ export function useNftPoolFactoryGetLiquidityToProvide<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryWrite<
   TFunctionName extends string,
@@ -2470,9 +2487,13 @@ export function useNftPoolFactoryWrite<
         chainId?: TChainId
       } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractWrite<typeof nftPoolFactoryABI, TFunctionName, TMode>({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     ...config,
   } as any)
 }
@@ -2480,7 +2501,8 @@ export function useNftPoolFactoryWrite<
 /**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"create"`.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryCreate<
   TMode extends WriteContractMode = undefined,
@@ -2502,9 +2524,13 @@ export function useNftPoolFactoryCreate<
         functionName?: 'create'
       } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractWrite<typeof nftPoolFactoryABI, 'create', TMode>({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     functionName: 'create',
     ...config,
   } as any)
@@ -2513,7 +2539,8 @@ export function useNftPoolFactoryCreate<
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function usePrepareNftPoolFactoryWrite<TFunctionName extends string>(
   config: Omit<
@@ -2521,9 +2548,13 @@ export function usePrepareNftPoolFactoryWrite<TFunctionName extends string>(
     'abi' | 'address'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return usePrepareContractWrite({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     ...config,
   } as UsePrepareContractWriteConfig<typeof nftPoolFactoryABI, TFunctionName>)
 }
@@ -2531,7 +2562,8 @@ export function usePrepareNftPoolFactoryWrite<TFunctionName extends string>(
 /**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"create"`.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function usePrepareNftPoolFactoryCreate(
   config: Omit<
@@ -2539,9 +2571,13 @@ export function usePrepareNftPoolFactoryCreate(
     'abi' | 'address' | 'functionName'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return usePrepareContractWrite({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     functionName: 'create',
     ...config,
   } as UsePrepareContractWriteConfig<typeof nftPoolFactoryABI, 'create'>)
@@ -2550,7 +2586,8 @@ export function usePrepareNftPoolFactoryCreate(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryEvent<TEventName extends string>(
   config: Omit<
@@ -2558,9 +2595,13 @@ export function useNftPoolFactoryEvent<TEventName extends string>(
     'abi' | 'address'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractEvent({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     ...config,
   } as UseContractEventConfig<typeof nftPoolFactoryABI, TEventName>)
 }
@@ -2568,7 +2609,8 @@ export function useNftPoolFactoryEvent<TEventName extends string>(
 /**
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `eventName` set to `"Created"`.
  *
- *
+ * -
+ * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
  */
 export function useNftPoolFactoryCreatedEvent(
   config: Omit<
@@ -2576,9 +2618,13 @@ export function useNftPoolFactoryCreatedEvent(
     'abi' | 'address' | 'eventName'
   > & { chainId?: keyof typeof nftPoolFactoryAddress } = {} as any,
 ) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
   return useContractEvent({
     abi: nftPoolFactoryABI,
-    address: nftPoolFactoryAddress[31337],
+    address:
+      nftPoolFactoryAddress[chainId as keyof typeof nftPoolFactoryAddress],
     eventName: 'Created',
     ...config,
   } as UseContractEventConfig<typeof nftPoolFactoryABI, 'Created'>)

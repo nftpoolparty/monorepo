@@ -1,0 +1,1 @@
+forge script contracts/script/Deploy.s.sol --rpc-url https://eth-sepolia-public.unifra.io --broadcast --verifier-url https://sepolia-blockscout.scroll.io/api? --verifier blockscout
