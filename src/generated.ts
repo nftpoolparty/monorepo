@@ -451,9 +451,6 @@ export const iMulticall3ABI = [
 // MultiEdition721
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
-
-*/
 export const multiEdition721ABI = [
   {
     stateMutability: 'nonpayable',
@@ -644,19 +641,6 @@ export const multiEdition721ABI = [
     outputs: [],
   },
 ] as const
-
-/**
-
-*/
-export const multiEdition721Address = {} as const
-
-/**
-
-*/
-export const multiEdition721Config = {
-  address: multiEdition721Address,
-  abi: multiEdition721ABI,
-} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // NftPoolFactory
@@ -1817,12 +1801,11 @@ export function useMultiEdition721Read<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     ...config,
   } as UseContractReadConfig<
     typeof multiEdition721ABI,
@@ -1844,12 +1827,11 @@ export function useMultiEdition721BalanceOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'balanceOf',
     ...config,
   } as UseContractReadConfig<
@@ -1872,12 +1854,11 @@ export function useMultiEdition721GetApproved<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'getApproved',
     ...config,
   } as UseContractReadConfig<
@@ -1900,12 +1881,11 @@ export function useMultiEdition721IsApprovedForAll<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'isApprovedForAll',
     ...config,
   } as UseContractReadConfig<
@@ -1928,12 +1908,11 @@ export function useMultiEdition721Name<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'name',
     ...config,
   } as UseContractReadConfig<
@@ -1956,12 +1935,11 @@ export function useMultiEdition721OwnerOf<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'ownerOf',
     ...config,
   } as UseContractReadConfig<
@@ -1984,12 +1962,11 @@ export function useMultiEdition721SupportsInterface<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'supportsInterface',
     ...config,
   } as UseContractReadConfig<
@@ -2012,12 +1989,11 @@ export function useMultiEdition721Symbol<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'symbol',
     ...config,
   } as UseContractReadConfig<
@@ -2040,12 +2016,11 @@ export function useMultiEdition721TokenPrice<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'tokenPrice',
     ...config,
   } as UseContractReadConfig<
@@ -2068,12 +2043,11 @@ export function useMultiEdition721TokenUri<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'tokenURI',
     ...config,
   } as UseContractReadConfig<
@@ -2096,12 +2070,11 @@ export function useMultiEdition721TotalSupply<
       TFunctionName,
       TSelectData
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return useContractRead({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'totalSupply',
     ...config,
   } as UseContractReadConfig<
@@ -2117,7 +2090,6 @@ export function useMultiEdition721TotalSupply<
 export function useMultiEdition721Write<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof multiEdition721Address,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2127,20 +2099,17 @@ export function useMultiEdition721Write<
         >['request']['abi'],
         TFunctionName,
         TMode
-      > & { address?: Address; chainId?: TChainId }
+      >
     : UseContractWriteConfig<
         typeof multiEdition721ABI,
         TFunctionName,
         TMode
       > & {
         abi?: never
-        address?: never
-        chainId?: TChainId
       } = {} as any,
 ) {
   return useContractWrite<typeof multiEdition721ABI, TFunctionName, TMode>({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     ...config,
   } as any)
 }
@@ -2150,7 +2119,6 @@ export function useMultiEdition721Write<
  */
 export function useMultiEdition721Approve<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof multiEdition721Address,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2160,17 +2128,14 @@ export function useMultiEdition721Approve<
         >['request']['abi'],
         'approve',
         TMode
-      > & { address?: Address; chainId?: TChainId; functionName?: 'approve' }
+      > & { functionName?: 'approve' }
     : UseContractWriteConfig<typeof multiEdition721ABI, 'approve', TMode> & {
         abi?: never
-        address?: never
-        chainId?: TChainId
         functionName?: 'approve'
       } = {} as any,
 ) {
   return useContractWrite<typeof multiEdition721ABI, 'approve', TMode>({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'approve',
     ...config,
   } as any)
@@ -2181,7 +2146,6 @@ export function useMultiEdition721Approve<
  */
 export function useMultiEdition721SafeTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof multiEdition721Address,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2191,26 +2155,19 @@ export function useMultiEdition721SafeTransferFrom<
         >['request']['abi'],
         'safeTransferFrom',
         TMode
-      > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'safeTransferFrom'
-      }
+      > & { functionName?: 'safeTransferFrom' }
     : UseContractWriteConfig<
         typeof multiEdition721ABI,
         'safeTransferFrom',
         TMode
       > & {
         abi?: never
-        address?: never
-        chainId?: TChainId
         functionName?: 'safeTransferFrom'
       } = {} as any,
 ) {
   return useContractWrite<typeof multiEdition721ABI, 'safeTransferFrom', TMode>(
     {
       abi: multiEdition721ABI,
-      address: multiEdition721Address[undefined],
       functionName: 'safeTransferFrom',
       ...config,
     } as any,
@@ -2222,7 +2179,6 @@ export function useMultiEdition721SafeTransferFrom<
  */
 export function useMultiEdition721SetApprovalForAll<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof multiEdition721Address,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2232,19 +2188,13 @@ export function useMultiEdition721SetApprovalForAll<
         >['request']['abi'],
         'setApprovalForAll',
         TMode
-      > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'setApprovalForAll'
-      }
+      > & { functionName?: 'setApprovalForAll' }
     : UseContractWriteConfig<
         typeof multiEdition721ABI,
         'setApprovalForAll',
         TMode
       > & {
         abi?: never
-        address?: never
-        chainId?: TChainId
         functionName?: 'setApprovalForAll'
       } = {} as any,
 ) {
@@ -2254,7 +2204,6 @@ export function useMultiEdition721SetApprovalForAll<
     TMode
   >({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'setApprovalForAll',
     ...config,
   } as any)
@@ -2265,7 +2214,6 @@ export function useMultiEdition721SetApprovalForAll<
  */
 export function useMultiEdition721TransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof multiEdition721Address,
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2275,25 +2223,18 @@ export function useMultiEdition721TransferFrom<
         >['request']['abi'],
         'transferFrom',
         TMode
-      > & {
-        address?: Address
-        chainId?: TChainId
-        functionName?: 'transferFrom'
-      }
+      > & { functionName?: 'transferFrom' }
     : UseContractWriteConfig<
         typeof multiEdition721ABI,
         'transferFrom',
         TMode
       > & {
         abi?: never
-        address?: never
-        chainId?: TChainId
         functionName?: 'transferFrom'
       } = {} as any,
 ) {
   return useContractWrite<typeof multiEdition721ABI, 'transferFrom', TMode>({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'transferFrom',
     ...config,
   } as any)
@@ -2305,12 +2246,11 @@ export function useMultiEdition721TransferFrom<
 export function usePrepareMultiEdition721Write<TFunctionName extends string>(
   config: Omit<
     UsePrepareContractWriteConfig<typeof multiEdition721ABI, TFunctionName>,
-    'abi' | 'address'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi'
+  > = {} as any,
 ) {
   return usePrepareContractWrite({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     ...config,
   } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, TFunctionName>)
 }
@@ -2321,12 +2261,11 @@ export function usePrepareMultiEdition721Write<TFunctionName extends string>(
 export function usePrepareMultiEdition721Approve(
   config: Omit<
     UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'approve'>,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return usePrepareContractWrite({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'approve',
     ...config,
   } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'approve'>)
@@ -2341,12 +2280,11 @@ export function usePrepareMultiEdition721SafeTransferFrom(
       typeof multiEdition721ABI,
       'safeTransferFrom'
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return usePrepareContractWrite({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'safeTransferFrom',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -2364,12 +2302,11 @@ export function usePrepareMultiEdition721SetApprovalForAll(
       typeof multiEdition721ABI,
       'setApprovalForAll'
     >,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return usePrepareContractWrite({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'setApprovalForAll',
     ...config,
   } as UsePrepareContractWriteConfig<
@@ -2384,12 +2321,11 @@ export function usePrepareMultiEdition721SetApprovalForAll(
 export function usePrepareMultiEdition721TransferFrom(
   config: Omit<
     UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'transferFrom'>,
-    'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'functionName'
+  > = {} as any,
 ) {
   return usePrepareContractWrite({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     functionName: 'transferFrom',
     ...config,
   } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'transferFrom'>)
@@ -2401,12 +2337,11 @@ export function usePrepareMultiEdition721TransferFrom(
 export function useMultiEdition721Event<TEventName extends string>(
   config: Omit<
     UseContractEventConfig<typeof multiEdition721ABI, TEventName>,
-    'abi' | 'address'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi'
+  > = {} as any,
 ) {
   return useContractEvent({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     ...config,
   } as UseContractEventConfig<typeof multiEdition721ABI, TEventName>)
 }
@@ -2417,12 +2352,11 @@ export function useMultiEdition721Event<TEventName extends string>(
 export function useMultiEdition721ApprovalEvent(
   config: Omit<
     UseContractEventConfig<typeof multiEdition721ABI, 'Approval'>,
-    'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'eventName'
+  > = {} as any,
 ) {
   return useContractEvent({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     eventName: 'Approval',
     ...config,
   } as UseContractEventConfig<typeof multiEdition721ABI, 'Approval'>)
@@ -2434,12 +2368,11 @@ export function useMultiEdition721ApprovalEvent(
 export function useMultiEdition721ApprovalForAllEvent(
   config: Omit<
     UseContractEventConfig<typeof multiEdition721ABI, 'ApprovalForAll'>,
-    'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'eventName'
+  > = {} as any,
 ) {
   return useContractEvent({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     eventName: 'ApprovalForAll',
     ...config,
   } as UseContractEventConfig<typeof multiEdition721ABI, 'ApprovalForAll'>)
@@ -2451,12 +2384,11 @@ export function useMultiEdition721ApprovalForAllEvent(
 export function useMultiEdition721TransferEvent(
   config: Omit<
     UseContractEventConfig<typeof multiEdition721ABI, 'Transfer'>,
-    'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof multiEdition721Address } = {} as any,
+    'abi' | 'eventName'
+  > = {} as any,
 ) {
   return useContractEvent({
     abi: multiEdition721ABI,
-    address: multiEdition721Address[undefined],
     eventName: 'Transfer',
     ...config,
   } as UseContractEventConfig<typeof multiEdition721ABI, 'Transfer'>)
