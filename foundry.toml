@@ -4,3 +4,7 @@ test = 'contracts/test'
 out = 'contracts/out'
 libs = ['node_modules']
 solc = '0.8.13'
+
+allow_paths = ["node_modules"]
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config
