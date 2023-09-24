@@ -3,7 +3,7 @@ pragma solidity >=0.8.0;
 
 import "forge-std/Script.sol";
 
-import {NftPoolFactory} from "../contracts/NftPoolFactory.sol";
+import {UniNftRouter} from "contracts/UniNftRouter.sol";
 
 contract Deploy is Script {
     function setUp() public {}
@@ -13,6 +13,6 @@ contract Deploy is Script {
 
         vm.startBroadcast(deployer);
 
-        new NftPoolFactory();
+        // new NftPoolFactory();
     }
 }

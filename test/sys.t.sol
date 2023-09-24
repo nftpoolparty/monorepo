@@ -3,8 +3,8 @@ pragma solidity ^0.8.21;
 
 import "forge-std/console.sol";
 import {PoolManager, PoolKey} from "v4-core/PoolManager.sol";
-import {UniNftRouter} from "../src/UniNftRouter.sol";
-import {UniNftToken} from "../src/UniNftToken.sol";
+import {UniNftRouter} from "contracts/UniNftRouter.sol";
+import {UniNftToken} from "contracts/UniNftToken.sol";
 import "forge-std/Test.sol";
 
 contract SysTest is Test {
