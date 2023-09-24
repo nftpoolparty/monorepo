@@ -6,42 +6,31 @@ import {
   useAccount,
   useBalance,
   useChainId,
-  useContractRead,
   useWaitForTransaction,
 } from "wagmi";
 import {
-  uniNftHookABI,
-  uniNftRouterABI,
-  uniNftRouterAddress,
   usePrepareUniNftRouterBuyNft,
-  usePrepareUniNftRouterCreate,
   useUniNftRouterBuyNft,
   useUniNftTokenBalanceOf,
 } from "../generated";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { ProcessingMessage } from "./Forms";
 
-function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
+function Buy({
+  nftContractAddress,
+  balance: balanceValue,
+}: {
+  nftContractAddress: Address;
+  balance: bigint;
+}) {
   const { address } = useAccount();
   const [quantity, setQuantity] = useState(1n);
 
   const chainId = useChainId();
 
-  const { data: balance } = useBalance();
-
-  /*
-    UniNftToken token,
-    uint256 maxPrice,
-    address receiver,
-    bytes memory receiverData
-  */
-
-  const balanceValue = balance?.value;
-
   const { data: buyEstimation } = usePrepareUniNftRouterBuyNft({
-    value: balanceValue || 0n,
-    args: [nftContractAddress, balanceValue || 0n, address!, "0x"],
-    enabled: !!balanceValue,
+    value: balanceValue,
+    args: [nftContractAddress, balanceValue, address!, "0x"],
   });
 
   const price = buyEstimation ? buyEstimation.result : null;
@@ -58,9 +47,14 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
   const totalCost = price ? price * quantity : 0n;
 
   const { config, isError, error } = usePrepareUniNftRouterBuyNft({
-    args: [nftContractAddress, price || 0n, address!, "0x"],
+    args: [
+      nftContractAddress,
+      (price || 0n) + BigInt(Math.round(Number(price) * 0.02)),
+      address!,
+      "0x",
+    ],
     value: price || 0n,
-    enabled: !!price
+    enabled: !!price,
   });
 
   const { data, write, isSuccess } = useUniNftRouterBuyNft({
@@ -142,7 +136,7 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
       </div>
       {isError && error && <div>{error.message}</div>}
       {isLoading && <ProcessingMessage hash={data?.hash} />}
-      {isSuccess && <div>Contract created!</div>}
+      {isSuccess && <div>Token minted!</div>}
     </form>
   );
 }
@@ -158,13 +152,25 @@ export function Swap() {
   const { data } = useUniNftTokenBalanceOf({
     args: [address!],
     address: nftContractAddress,
+    watch: true,
   });
+
+  const { data: ethBalance } = useBalance({
+    address: address!,
+  });
+
+  console.log({ ethBalance, data });
 
   return (
     <div>
       <div className={`max-w-md mx-auto p-4 rounded-lg bg-purple-500`}>
-        <>Your balance: {Number(data || 0n)}</>
-        {mode === "buy" && <Buy nftContractAddress={nftContractAddress} />}
+        <>Number of nfts owned: {Number(data || 0n)}</>
+        {mode === "buy" && ethBalance && (
+          <Buy
+            nftContractAddress={nftContractAddress}
+            balance={ethBalance.value}
+          />
+        )}
       </div>
     </div>
   );
