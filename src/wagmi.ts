@@ -29,6 +29,7 @@ scrollTestnet.rpcUrls
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     scrollSepolia,
+    baseGoerli,
     ...(process.env.NODE_ENV === 'development' ? [foundry] : []),
   ],
   [

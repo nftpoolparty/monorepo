@@ -1,0 +1,1 @@
+forge script script/DeployBase.s.sol --rpc-url https://goerli.base.org --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --etherscan-api-key asdfasdf --verify

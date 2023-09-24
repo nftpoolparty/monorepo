@@ -4276,6 +4276,7 @@ export const uniNftHookABI = [
 
 /**
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterABI = [
@@ -4464,15 +4465,18 @@ export const uniNftRouterABI = [
 
 /**
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterAddress = {
   31337: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
+  84531: '0x5052ca1471aC16821CbFAA0B1219DA6351c8D0A6',
   534351: '0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817',
 } as const
 
 /**
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterConfig = {
@@ -12931,6 +12935,7 @@ export function usePrepareUniNftHookLockAcquired(
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterRead<
@@ -12960,6 +12965,7 @@ export function useUniNftRouterRead<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"MGR"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterMgr<
@@ -12990,6 +12996,7 @@ export function useUniNftRouterMgr<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"findHookSalt"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterFindHookSalt<
@@ -13020,6 +13027,7 @@ export function useUniNftRouterFindHookSalt<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"isValidToken"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterIsValidToken<
@@ -13050,6 +13058,7 @@ export function useUniNftRouterIsValidToken<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterWrite<
@@ -13086,6 +13095,7 @@ export function useUniNftRouterWrite<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteCreateAndRevert<
@@ -13135,6 +13145,7 @@ export function useUniNftRouterQuoteCreateAndRevert<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterBuyNft<
@@ -13172,6 +13183,7 @@ export function useUniNftRouterBuyNft<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreate<
@@ -13209,6 +13221,7 @@ export function useUniNftRouterCreate<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterLockAcquired<
@@ -13250,6 +13263,7 @@ export function useUniNftRouterLockAcquired<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteBuyNft<
@@ -13291,6 +13305,7 @@ export function useUniNftRouterQuoteBuyNft<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteCreate<
@@ -13332,6 +13347,7 @@ export function useUniNftRouterQuoteCreate<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterSellNft<
@@ -13369,6 +13385,7 @@ export function useUniNftRouterSellNft<
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
@@ -13391,6 +13408,7 @@ export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteCreateAndRevert(
@@ -13420,6 +13438,7 @@ export function usePrepareUniNftRouterQuoteCreateAndRevert(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterBuyNft(
@@ -13443,6 +13462,7 @@ export function usePrepareUniNftRouterBuyNft(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterCreate(
@@ -13466,6 +13486,7 @@ export function usePrepareUniNftRouterCreate(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterLockAcquired(
@@ -13489,6 +13510,7 @@ export function usePrepareUniNftRouterLockAcquired(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteBuyNft(
@@ -13512,6 +13534,7 @@ export function usePrepareUniNftRouterQuoteBuyNft(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteCreate(
@@ -13535,6 +13558,7 @@ export function usePrepareUniNftRouterQuoteCreate(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterSellNft(
@@ -13558,6 +13582,7 @@ export function usePrepareUniNftRouterSellNft(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterEvent<TEventName extends string>(
@@ -13580,6 +13605,7 @@ export function useUniNftRouterEvent<TEventName extends string>(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__ and `eventName` set to `"Created"`.
  *
  * -
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6)
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreatedEvent(
