@@ -17,6 +17,7 @@ import {
   useUniNftRouterBuyNft,
   useUniNftRouterSellNft,
   useUniNftTokenBalanceOf,
+  useUniNftTokenGetTokenIdsByOwner,
   useUniNftTokenIsApprovedForAll,
   useUniNftTokenSetApprovalForAll,
 } from "../generated";
@@ -141,10 +142,18 @@ function Sell({ nftContractAddress }: { nftContractAddress: Address }) {
   const { address } = useAccount();
   const [quantity, setQuantity] = useState(1n);
 
-  const tokenId = 2n;
+  const { data: tokenIds } = useUniNftTokenGetTokenIdsByOwner({
+    args: [address!],
+    address: nftContractAddress,
+  });
+
+  const tokenId = (tokenIds && tokenIds[0]) || null;
+
+  console.log({ tokenIds });
 
   const { data: sellEstimationResult } = usePrepareUniNftRouterSellNft({
-    args: [nftContractAddress, tokenId, parseEther("0.0000001"), address!],
+    args: [nftContractAddress, tokenId || 0n, parseEther("0.0001"), address!],
+    enabled: !!tokenId,
   });
 
   const sellEstimation = sellEstimationResult
@@ -162,13 +171,11 @@ function Sell({ nftContractAddress }: { nftContractAddress: Address }) {
 
   const totalCost = sellEstimation ? sellEstimation * quantity : 0n;
 
-  console.log({ sellEstimation });
-
-  const minPrice = 1n;
+  const minPrice = parseEther("0.0001");
 
   const { config, isError, error } = usePrepareUniNftRouterSellNft({
-    args: [nftContractAddress, tokenId, minPrice, address!],
-    enabled: !!sellEstimation,
+    args: [nftContractAddress, tokenId || 0n, minPrice, address!],
+    enabled: !!sellEstimation && !!tokenId,
   });
 
   const { data, write, isSuccess } = useUniNftRouterSellNft({
@@ -357,7 +364,7 @@ export function Swap() {
           Number of nfts owned: {Number(data || 0n)}
         </p>
         {mode === "mint" && <Buy nftContractAddress={nftContractAddress} />}
-        {mode === "sell" && (
+        {mode === "sell" && Number(data || 0n) > 0n && (
           <>
             {!isApproved && (
               <ApproveSell nftContractAddress={nftContractAddress} />

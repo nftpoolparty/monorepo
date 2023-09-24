@@ -3990,9 +3990,9 @@ export const uniNftHookABI = [
     stateMutability: 'nonpayable',
     type: 'function',
     inputs: [
-      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
       {
-        name: 'key',
+        name: '',
         internalType: 'struct PoolKey',
         type: 'tuple',
         components: [
@@ -4004,7 +4004,7 @@ export const uniNftHookABI = [
         ],
       },
       {
-        name: 'params',
+        name: '',
         internalType: 'struct IPoolManager.ModifyPositionParams',
         type: 'tuple',
         components: [
@@ -4014,7 +4014,7 @@ export const uniNftHookABI = [
         ],
       },
       { name: 'delta', internalType: 'BalanceDelta', type: 'int256' },
-      { name: 'hookData', internalType: 'bytes', type: 'bytes' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
     ],
     name: 'afterModifyPosition',
     outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
@@ -4025,7 +4025,7 @@ export const uniNftHookABI = [
     inputs: [
       { name: 'sender', internalType: 'address', type: 'address' },
       {
-        name: 'key',
+        name: '',
         internalType: 'struct PoolKey',
         type: 'tuple',
         components: [
@@ -4037,7 +4037,7 @@ export const uniNftHookABI = [
         ],
       },
       {
-        name: 'params',
+        name: '',
         internalType: 'struct IPoolManager.SwapParams',
         type: 'tuple',
         components: [
@@ -4259,11 +4259,11 @@ export const uniNftHookABI = [
     outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
   {
-    stateMutability: 'nonpayable',
+    stateMutability: 'pure',
     type: 'function',
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'transfer',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
@@ -4466,7 +4466,7 @@ export const uniNftRouterABI = [
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
  */
 export const uniNftRouterAddress = {
-  31337: '0xe1DA8919f262Ee86f9BE05059C9280142CF23f48',
+  31337: '0x12975173B87F7595EE45dFFb2Ab812ECE596Bf84',
   534351: '0x2093FA634730172d29C618879428336b021f7732',
 } as const
 
@@ -4616,6 +4616,15 @@ export const uniNftTokenABI = [
           { name: 'hooks', internalType: 'contract IHooks', type: 'address' },
         ],
       },
+    ],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'getTokenIdsByOwner',
+    outputs: [
+      { name: 'tokenIds', internalType: 'uint256[]', type: 'uint256[]' },
     ],
   },
   {
@@ -12453,6 +12462,25 @@ export function useUniNftHookSymbol<
 }
 
 /**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
+ */
+export function useUniNftHookTransfer<
+  TFunctionName extends 'transfer',
+  TSelectData = ReadContractResult<typeof uniNftHookABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof uniNftHookABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: uniNftHookABI,
+    functionName: 'transfer',
+    ...config,
+  } as UseContractReadConfig<typeof uniNftHookABI, TFunctionName, TSelectData>)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftHookABI}__.
  */
 export function useUniNftHookWrite<
@@ -12734,33 +12762,6 @@ export function useUniNftHookLockAcquired<
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
- */
-export function useUniNftHookTransfer<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof uniNftHookABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
-        TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof uniNftHookABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
-) {
-  return useContractWrite<typeof uniNftHookABI, 'transfer', TMode>({
-    abi: uniNftHookABI,
-    functionName: 'transfer',
-    ...config,
-  } as any)
-}
-
-/**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftHookABI}__.
  */
 export function usePrepareUniNftHookWrite<TFunctionName extends string>(
@@ -12923,22 +12924,6 @@ export function usePrepareUniNftHookLockAcquired(
     functionName: 'lockAcquired',
     ...config,
   } as UsePrepareContractWriteConfig<typeof uniNftHookABI, 'lockAcquired'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
- */
-export function usePrepareUniNftHookTransfer(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof uniNftHookABI, 'transfer'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: uniNftHookABI,
-    functionName: 'transfer',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof uniNftHookABI, 'transfer'>)
 }
 
 /**
@@ -13722,6 +13707,25 @@ export function useUniNftTokenGetPoolKey<
   return useContractRead({
     abi: uniNftTokenABI,
     functionName: 'getPoolKey',
+    ...config,
+  } as UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftTokenABI}__ and `functionName` set to `"getTokenIdsByOwner"`.
+ */
+export function useUniNftTokenGetTokenIdsByOwner<
+  TFunctionName extends 'getTokenIdsByOwner',
+  TSelectData = ReadContractResult<typeof uniNftTokenABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: uniNftTokenABI,
+    functionName: 'getTokenIdsByOwner',
     ...config,
   } as UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>)
 }
