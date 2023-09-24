@@ -1,0 +1,1 @@
+forge script script/DeploySepolia.s.sol --rpc-url https://eth-sepolia.g.alchemy.com/v2/$ALCHEMY_KEY --legacy --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --verify 
