@@ -2,17 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
+
+
+
+body {
   padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+    margin: 0;
+    padding: 0;
+    background: #333;
 }
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
   background: linear-gradient(to right, #33ccff 0%, #00a25a 100%);
   padding: 20px 10px;
+  justify-content: space-between; /* Adjust alignment as needed */
+  
 }
 
 /* Style the header links */
@@ -66,6 +74,23 @@
   padding-right: 30px;
 }
 
-.Fizzorm {
+.Formizzle
+{
+  padding-top: 100px;
   align-content: center;
 }
+
+.vl {
+  border-left: 6px solid green;
+  height: 50px;
+}
+
+.button a:hover {
+  background-color: #00a25a;
+  color: black;
+}
+
+.nav { height: 70px;
+display: flex;
+padding: 0px;
+box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1); }

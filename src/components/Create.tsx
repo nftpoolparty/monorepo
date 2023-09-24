@@ -18,6 +18,7 @@ import {
 import { Address, formatEther, parseEther } from "viem";
 import { parseCreateReceipt } from "../utils/txParsing";
 
+
 export function Create() {
   return (
     <div>
@@ -126,8 +127,11 @@ function SetCreate() {
     },
     [write]
   );
-  return (
-    <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg`}>
+ 
+  return ( 
+  
+  <div className="Formizzle">
+    <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg mt-2`}>
       <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">
         <FormFieldWrapperAndLabel label="Name">
           <input
@@ -185,7 +189,7 @@ function SetCreate() {
         </FormFieldWrapperAndLabel>
         <div className="flex items-center justify-between">
           <button
-            className="bg-white text-purple hover:bg-green-dark font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-white text-purple font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             disabled={!write || isLoading}
           >
@@ -197,7 +201,7 @@ function SetCreate() {
         {isSuccess && <div>Contract created!</div>}
         {contractAddress && <>contract address: {contractAddress}</>}
       </form>
-    </div>
+    </div></div>
   );
 
   // return (
