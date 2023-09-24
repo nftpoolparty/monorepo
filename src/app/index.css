@@ -2,25 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-.body {
+
+
+
+body {
   padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
+    margin: 0;
+    padding: 0;
+    
 }
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
   background: linear-gradient(to right, #33ccff 0%, #00a25a 100%);
   padding: 20px 10px;
+
+  justify-content: space-between; /* Adjust alignment as needed */
+  text-align: center;
 }
 
 /* Style the header links */
 .header a {
   float: left;
-  color: black;
+  color: white;
   text-align: center;
   padding: 12px;
+  font-size: 60px;
   text-decoration: none;
   font-size: 18px;
   line-height: 25px;
@@ -35,7 +45,7 @@
 
 /* Change the background color on mouse-over */
 .header a:hover {
-  background-color: #00a25a;
+  background-color: pink;
   color: black;
 }
 
@@ -66,6 +76,38 @@
   padding-right: 30px;
 }
 
-.Fizzorm {
+.Formizzle
+{
+  padding-top: 100px;
   align-content: center;
 }
+
+.vl {
+  border-left: 6px solid green;
+  height: 50px;
+}
+
+.button a:hover {
+  background-color: #00a25a;
+  color: black;
+}
+
+.navvy { 
+  padding-top: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  padding-left: 300px;
+  align-content: center;
+  text-align: center;
+     }
+
+/* components/MyComponent.module.css */
+.container {
+  font-family: 'SpaceTime', sans-serif;
+}
+
+.text {
+  font-family: 'SpaceTime', sans-serif;
+}
+
+/* Your other global styles go here */
