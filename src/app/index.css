@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.body{
+.body {
   padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
-  
 }
 /* Style the header with a grey background and some padding */
 .header {
@@ -58,16 +57,14 @@
 }
 
 .wallet {
-    float: right;
-    text-align: right;
+  float: right;
+  text-align: right;
 }
 
 .wallet {
-    float: right;
-    padding-right: 30px;
-
+  float: right;
+  padding-right: 30px;
 }
-
 
 .Fizzorm {
   align-content: center;

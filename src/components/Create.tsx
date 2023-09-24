@@ -46,7 +46,6 @@ function FormFieldWrapperAndLabel({
   );
 }
 
-
 function SetCreate() {
   // contract fields are:
   /*
@@ -128,10 +127,6 @@ function SetCreate() {
     [write]
   );
   return (
-    
-  
-  
-
     <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg`}>
       <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">
         <FormFieldWrapperAndLabel label="Name">
@@ -202,7 +197,7 @@ function SetCreate() {
         {isSuccess && <div>Contract created!</div>}
         {contractAddress && <>contract address: {contractAddress}</>}
       </form>
-    </div>    
+    </div>
   );
 
   // return (
