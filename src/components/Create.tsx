@@ -8,14 +8,14 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useNetwork, useWaitForTransaction } from "wagmi";
+import { useAccount, useNetwork, useWaitForTransaction } from "wagmi";
 
 import {
-  useNftPoolFactoryCreate,
-  useNftPoolFactoryGetLiquidityToProvide,
-  usePrepareNftPoolFactoryCreate,
+  usePrepareUniNftRouterCreate,
+  useUniNftRouterCreate,
+  useUniNftRouterFindHookSalt,
 } from "../generated";
-import { Address, formatEther, parseEther } from "viem";
+import { Address, etherUnits, formatEther, parseEther } from "viem";
 import { parseCreateReceipt } from "../utils/txParsing";
 
 export function Create() {
@@ -60,23 +60,56 @@ function SetCreate() {
   const [tokenURI, setTokenURI] = useState("ipfs.io//ipfs");
   const [maxSupply, setMaxSupply] = useState(100n);
   const [initialPrice, setInitialPrice] = useState<`${number}`>(
-    () => parseEther("0.00001").toString() as `${number}`
+    () => parseEther("0.1").toString() as `${number}`
+  );
+  const [saltStart] = useState(() =>
+    /* random bigint:*/ BigInt(Math.round(Math.random() * 100000))
   );
 
-  const { refetch, data: value } = useNftPoolFactoryGetLiquidityToProvide({
-    args:
-      maxSupply && initialPrice ? [maxSupply, BigInt(initialPrice)] : undefined,
-  });
-  const { config, isError, error } = usePrepareNftPoolFactoryCreate({
-    args:
-      name && symbol && tokenURI && maxSupply && initialPrice
-        ? [name, symbol, tokenURI, maxSupply, BigInt(initialPrice)]
-        : undefined,
-    value: value || 0n,
-    enabled: Boolean(value),
+  const fee = 0.025e4;
+
+  /*
+         string memory nftName,
+        string memory nftSymbol,
+        string memory tokenUri,
+        uint24 fee,
+        address caller,
+        uint256 saltStart
+  */
+
+  const { address } = useAccount();
+
+  const { data: hookSalt, isFetching } = useUniNftRouterFindHookSalt({
+    args: [name, symbol, tokenURI, fee, address!, saltStart],
   });
 
-  const { data, write, isSuccess } = useNftPoolFactoryCreate({
+  console.log({ hookSalt, enabled: Boolean(hookSalt) && !isFetching });
+
+  /* create args:
+        string memory nftName,
+        string memory nftSymbol,
+        uint128 maxSupply,
+        string memory tokenUri,
+        uint24 fee,
+        uint256 hookSalt
+  
+  */
+
+  const { data: estimateCreateResult } = usePrepareUniNftRouterCreate({
+    args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
+    value: BigInt(initialPrice),
+    enabled: Boolean(hookSalt) && !isFetching,
+  });
+
+  const value = estimateCreateResult ? estimateCreateResult.result[1] : null;
+
+  const { config, isError, error } = usePrepareUniNftRouterCreate({
+    args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
+    value: value ? value : 0n,
+    enabled: Boolean(hookSalt) && Boolean(value) && !isFetching,
+  });
+
+  const { data, write, isSuccess } = useUniNftRouterCreate({
     ...config,
     // onSuccess: () => setValue(''),
   });
@@ -96,7 +129,7 @@ function SetCreate() {
 
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
-    onSuccess: () => refetch(),
+    // onSuccess: () => refetch(),
   });
 
   const handleMaxSupplyChanged = useCallback((e: ChangeEvent) => {

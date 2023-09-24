@@ -1,1 +1,1 @@
-forge script script/Deploy.s.sol --rpc-url https://sepolia-rpc.scroll.io/ --legacy --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --verify --verifier-url https://sepolia-blockscout.scroll.io/api\? --verifier blockscout --resume
+forge script script/DeployScroll.s.sol --rpc-url https://sepolia-rpc.scroll.io/ --legacy --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --verify --verifier-url https://sepolia-blockscout.scroll.io/api\? --verifier blockscout --resume
