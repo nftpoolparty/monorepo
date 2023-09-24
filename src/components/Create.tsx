@@ -12,36 +12,20 @@ import { useAccount, useNetwork, useWaitForTransaction } from "wagmi";
 
 import {
   usePrepareUniNftRouterCreate,
+  usePrepareUniNftRouterQuoteCreate,
   useUniNftRouterCreate,
   useUniNftRouterFindHookSalt,
+  useUniNftRouterQuoteCreate,
 } from "../generated";
 import { Address, etherUnits, formatEther, parseEther } from "viem";
 import { parseCreateReceipt } from "../utils/txParsing";
+import { FormFieldWrapperAndLabel, ProcessingMessage } from "./Forms";
+import Link from "next/link";
 
 export function Create() {
   return (
     <div>
       <SetCreate />
-    </div>
-  );
-}
-
-function FormFieldWrapperAndLabel({
-  label,
-  children,
-}: {
-  label: string;
-  children: JSX.Element;
-}) {
-  return (
-    <div className="mb-4">
-      <label
-        className="block text-white text-sm font-bold mb-2"
-        htmlFor="symbol"
-      >
-        {label}
-      </label>
-      {children}
     </div>
   );
 }
@@ -95,18 +79,29 @@ function SetCreate() {
   
   */
 
-  const { data: estimateCreateResult } = usePrepareUniNftRouterCreate({
-    args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
-    value: BigInt(initialPrice),
-    enabled: Boolean(hookSalt) && !isFetching,
+  const { data: estimateCreateResult } = usePrepareUniNftRouterQuoteCreate({
+    args: [
+      name,
+      symbol,
+      maxSupply,
+      tokenURI,
+      fee,
+      hookSalt!,
+      BigInt(initialPrice),
+    ],
   });
 
-  const value = estimateCreateResult ? estimateCreateResult.result[1] : null;
+  const liquidityToProvide = estimateCreateResult
+    ? estimateCreateResult.result[1]
+    : null;
+  const tokenPrice = estimateCreateResult
+    ? estimateCreateResult.result[2]
+    : null;
 
   const { config, isError, error } = usePrepareUniNftRouterCreate({
     args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
-    value: value ? value : 0n,
-    enabled: Boolean(hookSalt) && Boolean(value) && !isFetching,
+    value: liquidityToProvide ? liquidityToProvide : 0n,
+    enabled: Boolean(hookSalt) && Boolean(liquidityToProvide) && !isFetching,
   });
 
   const { data, write, isSuccess } = useUniNftRouterCreate({
@@ -202,19 +197,26 @@ function SetCreate() {
             onChange={handleMaxSupplyChanged}
           />
         </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Initial Price">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="initialPrice"
-            type="number"
-            step="0.001"
-            placeholder="Initial Price"
-            value={formatEther(BigInt(initialPrice))}
-            onChange={handlePricePerTokenChanged}
-          />
-        </FormFieldWrapperAndLabel>
         <FormFieldWrapperAndLabel label="Initial liquidity to provide">
-          <label>{value ? `${formatEther(value)} ETH` : null}</label>
+          <div className="relative mt-2 rounded-md shadow-sm">
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="initialPrice"
+              type="number"
+              step="0.001"
+              placeholder="Initial liquidity to provide"
+              value={formatEther(BigInt(initialPrice))}
+              onChange={handlePricePerTokenChanged}
+            />
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+              <span className="text-gray-500 sm:text-sm" id="price-currency">
+                ETH
+              </span>
+            </div>
+          </div>
+        </FormFieldWrapperAndLabel>
+        <FormFieldWrapperAndLabel label="First token price">
+          <label>{tokenPrice ? `${formatEther(tokenPrice)} ETH` : null}</label>
         </FormFieldWrapperAndLabel>
         <div className="flex items-center justify-between">
           <button
@@ -228,68 +230,15 @@ function SetCreate() {
         {isError && error && <div>{error.message}</div>}
         {isLoading && <ProcessingMessage hash={data?.hash} />}
         {isSuccess && <div>Contract created!</div>}
-        {contractAddress && <>contract address: {contractAddress}</>}
+        {contractAddress && (
+          <div className="text-white">
+            NFT Contract Created:{" "}
+            <Link href={`/swap?contract=${contractAddress}`}>
+              {contractAddress}
+            </Link>
+          </div>
+        )}
       </form>
     </div>
-  );
-
-  // return (
-  //   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-  //     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-  //       <form>
-  //         <div className="space-y-12">
-  //           <div className="border-b border-white/10 pb-12">
-  //             {/* form for the above fields except for `value`, using tailwind css for styling the fields: */}
-  //             <div className="flex flex-col space-y-2">
-  //               <input
-  //                 type="text"
-  //                 value={name}
-  //                 onChange={(e) => setName(e.target.value)}
-  //                 className="border-2 border-gray-300 rounded-md p-2"
-  //               />
-  //             </div>
-  //             <div className="flex flex-col space-y-2">
-  //               <input
-  //                 type="text"
-  //                 value={symbol}
-  //                 onChange={(e) => setSymbol(e.target.value)}
-  //                 className="border-2 border-gray-300 rounded-md p-2"
-  //               />
-  //             </div>
-  //             <div className="flex flex-col space-y-2">
-  //               <input
-  //                 type="text"
-  //                 value={tokenURI}
-  //                 onChange={(e) => setTokenURI(e.target.value)}
-  //               />
-  //             </div>
-  //             <input
-  //               type="text"
-  //               value={maxSupply.toString()}
-  //               onChange={handleMaxSupplyChanged}
-  //             />
-
-  //             <button disabled={!write || isLoading} onClick={() => write?.()}>
-  //               Create
-  //             </button>
-  //             {isLoading && <ProcessingMessage hash={data?.hash} />}
-  //           </div>
-  //         </div>
-  //       </form>
-  //     </div>
-  //   </div>
-  // );
-}
-
-function ProcessingMessage({ hash }: { hash?: `0x${string}` }) {
-  const { chain } = useNetwork();
-  const etherscan = chain?.blockExplorers?.etherscan;
-  return (
-    <span>
-      Processing transaction...{" "}
-      {etherscan && (
-        <a href={`${etherscan.url}/tx/${hash}`}>{etherscan.name}</a>
-      )}
-    </span>
   );
 }

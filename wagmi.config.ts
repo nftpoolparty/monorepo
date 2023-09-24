@@ -8,8 +8,8 @@ export default defineConfig({
     foundry({
       deployments: {
         UniNftRouter: {
-          [chains.foundry.id]: '0xA15BB66138824a1c7167f5E85b957d04Dd34E468',
-          [534351]: '0x2093fa634730172d29c618879428336b021f7732'
+          [chains.foundry.id]: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
+          [534351]: '0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817'
         }
       },
     }),

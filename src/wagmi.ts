@@ -7,7 +7,6 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { publicProvider } from 'wagmi/providers/public'
 import {
   getDefaultWallets,
-  RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
 
 

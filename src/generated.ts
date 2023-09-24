@@ -4013,7 +4013,7 @@ export const uniNftHookABI = [
           { name: 'liquidityDelta', internalType: 'int256', type: 'int256' },
         ],
       },
-      { name: '', internalType: 'BalanceDelta', type: 'int256' },
+      { name: 'delta', internalType: 'BalanceDelta', type: 'int256' },
       { name: '', internalType: 'bytes', type: 'bytes' },
     ],
     name: 'afterModifyPosition',
@@ -4025,7 +4025,7 @@ export const uniNftHookABI = [
     inputs: [
       { name: 'sender', internalType: 'address', type: 'address' },
       {
-        name: 'key',
+        name: '',
         internalType: 'struct PoolKey',
         type: 'tuple',
         components: [
@@ -4037,7 +4037,7 @@ export const uniNftHookABI = [
         ],
       },
       {
-        name: 'params',
+        name: '',
         internalType: 'struct IPoolManager.SwapParams',
         type: 'tuple',
         components: [
@@ -4236,13 +4236,6 @@ export const uniNftHookABI = [
     outputs: [{ name: '', internalType: 'bytes', type: 'bytes' }],
   },
   {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [{ name: 'amount', internalType: 'uint256', type: 'uint256' }],
-    name: 'mintToPool',
-    outputs: [],
-  },
-  {
     stateMutability: 'view',
     type: 'function',
     inputs: [],
@@ -4266,11 +4259,11 @@ export const uniNftHookABI = [
     outputs: [{ name: '', internalType: 'string', type: 'string' }],
   },
   {
-    stateMutability: 'nonpayable',
+    stateMutability: 'pure',
     type: 'function',
     inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'transfer',
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
@@ -4283,7 +4276,7 @@ export const uniNftHookABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterABI = [
   {
@@ -4293,7 +4286,34 @@ export const uniNftRouterABI = [
       { name: 'mgr', internalType: 'contract IPoolManager', type: 'address' },
     ],
   },
+  { type: 'error', inputs: [], name: 'FailedToRefund' },
   { type: 'error', inputs: [], name: 'InvalidTick' },
+  {
+    type: 'error',
+    inputs: [{ name: 'price', internalType: 'uint256', type: 'uint256' }],
+    name: 'QuoteBuyRevert',
+  },
+  {
+    type: 'error',
+    inputs: [
+      { name: 'ethNeeded', internalType: 'uint256', type: 'uint256' },
+      { name: 'price', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'QuoteCreateInitialPositionError',
+  },
+  {
+    type: 'error',
+    inputs: [
+      {
+        name: 'nftToken',
+        internalType: 'contract UniNftToken',
+        type: 'address',
+      },
+      { name: 'ethNeeded', internalType: 'uint256', type: 'uint256' },
+      { name: 'price', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'QuoteCreateRevert',
+  },
   {
     type: 'event',
     anonymous: false,
@@ -4316,6 +4336,22 @@ export const uniNftRouterABI = [
     outputs: [
       { name: '', internalType: 'contract IPoolManager', type: 'address' },
     ],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'nftName', internalType: 'string', type: 'string' },
+      { name: 'nftSymbol', internalType: 'string', type: 'string' },
+      { name: 'maxSupply', internalType: 'uint128', type: 'uint128' },
+      { name: 'tokenUri', internalType: 'string', type: 'string' },
+      { name: 'fee', internalType: 'uint24', type: 'uint24' },
+      { name: 'hookSalt', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethDeposit', internalType: 'uint256', type: 'uint256' },
+      { name: 'caller', internalType: 'address', type: 'address' },
+    ],
+    name: '__quoteCreateAndRevert',
+    outputs: [],
   },
   {
     stateMutability: 'payable',
@@ -4385,6 +4421,38 @@ export const uniNftRouterABI = [
     type: 'function',
     inputs: [
       { name: 'token', internalType: 'contract UniNftToken', type: 'address' },
+    ],
+    name: 'quoteBuyNft',
+    outputs: [{ name: 'price', internalType: 'uint256', type: 'uint256' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'nftName', internalType: 'string', type: 'string' },
+      { name: 'nftSymbol', internalType: 'string', type: 'string' },
+      { name: 'maxSupply', internalType: 'uint128', type: 'uint128' },
+      { name: 'tokenUri', internalType: 'string', type: 'string' },
+      { name: 'fee', internalType: 'uint24', type: 'uint24' },
+      { name: 'hookSalt', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethDeposit', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'quoteCreate',
+    outputs: [
+      {
+        name: 'nftToken',
+        internalType: 'contract UniNftToken',
+        type: 'address',
+      },
+      { name: 'ethUsed', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethPrice', internalType: 'uint256', type: 'uint256' },
+    ],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract UniNftToken', type: 'address' },
       { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
       { name: 'minPrice', internalType: 'uint256', type: 'uint256' },
       { name: 'receiver', internalType: 'address payable', type: 'address' },
@@ -4396,16 +4464,16 @@ export const uniNftRouterABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterAddress = {
-  31337: '0xA15BB66138824a1c7167f5E85b957d04Dd34E468',
-  534351: '0x2093FA634730172d29C618879428336b021f7732',
+  31337: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
+  534351: '0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817',
 } as const
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterConfig = {
   address: uniNftRouterAddress,
@@ -4549,6 +4617,15 @@ export const uniNftTokenABI = [
           { name: 'hooks', internalType: 'contract IHooks', type: 'address' },
         ],
       },
+    ],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
+    name: 'getTokenIdsByOwner',
+    outputs: [
+      { name: 'tokenIds', internalType: 'uint256[]', type: 'uint256[]' },
     ],
   },
   {
@@ -12386,6 +12463,25 @@ export function useUniNftHookSymbol<
 }
 
 /**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
+ */
+export function useUniNftHookTransfer<
+  TFunctionName extends 'transfer',
+  TSelectData = ReadContractResult<typeof uniNftHookABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof uniNftHookABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: uniNftHookABI,
+    functionName: 'transfer',
+    ...config,
+  } as UseContractReadConfig<typeof uniNftHookABI, TFunctionName, TSelectData>)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftHookABI}__.
  */
 export function useUniNftHookWrite<
@@ -12667,60 +12763,6 @@ export function useUniNftHookLockAcquired<
 }
 
 /**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"mintToPool"`.
- */
-export function useUniNftHookMintToPool<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof uniNftHookABI,
-          'mintToPool'
-        >['request']['abi'],
-        'mintToPool',
-        TMode
-      > & { functionName?: 'mintToPool' }
-    : UseContractWriteConfig<typeof uniNftHookABI, 'mintToPool', TMode> & {
-        abi?: never
-        functionName?: 'mintToPool'
-      } = {} as any,
-) {
-  return useContractWrite<typeof uniNftHookABI, 'mintToPool', TMode>({
-    abi: uniNftHookABI,
-    functionName: 'mintToPool',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
- */
-export function useUniNftHookTransfer<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof uniNftHookABI,
-          'transfer'
-        >['request']['abi'],
-        'transfer',
-        TMode
-      > & { functionName?: 'transfer' }
-    : UseContractWriteConfig<typeof uniNftHookABI, 'transfer', TMode> & {
-        abi?: never
-        functionName?: 'transfer'
-      } = {} as any,
-) {
-  return useContractWrite<typeof uniNftHookABI, 'transfer', TMode>({
-    abi: uniNftHookABI,
-    functionName: 'transfer',
-    ...config,
-  } as any)
-}
-
-/**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftHookABI}__.
  */
 export function usePrepareUniNftHookWrite<TFunctionName extends string>(
@@ -12886,42 +12928,10 @@ export function usePrepareUniNftHookLockAcquired(
 }
 
 /**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"mintToPool"`.
- */
-export function usePrepareUniNftHookMintToPool(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof uniNftHookABI, 'mintToPool'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: uniNftHookABI,
-    functionName: 'mintToPool',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof uniNftHookABI, 'mintToPool'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftHookABI}__ and `functionName` set to `"transfer"`.
- */
-export function usePrepareUniNftHookTransfer(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof uniNftHookABI, 'transfer'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: uniNftHookABI,
-    functionName: 'transfer',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof uniNftHookABI, 'transfer'>)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterRead<
   TFunctionName extends string,
@@ -12950,7 +12960,7 @@ export function useUniNftRouterRead<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"MGR"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterMgr<
   TFunctionName extends 'MGR',
@@ -12980,7 +12990,7 @@ export function useUniNftRouterMgr<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"findHookSalt"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterFindHookSalt<
   TFunctionName extends 'findHookSalt',
@@ -13010,7 +13020,7 @@ export function useUniNftRouterFindHookSalt<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"isValidToken"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterIsValidToken<
   TFunctionName extends 'isValidToken',
@@ -13040,7 +13050,7 @@ export function useUniNftRouterIsValidToken<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterWrite<
   TFunctionName extends string,
@@ -13073,10 +13083,59 @@ export function useUniNftRouterWrite<
 }
 
 /**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function useUniNftRouterQuoteCreateAndRevert<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          '__quoteCreateAndRevert'
+        >['request']['abi'],
+        '__quoteCreateAndRevert',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: '__quoteCreateAndRevert'
+      }
+    : UseContractWriteConfig<
+        typeof uniNftRouterABI,
+        '__quoteCreateAndRevert',
+        TMode
+      > & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: '__quoteCreateAndRevert'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<
+    typeof uniNftRouterABI,
+    '__quoteCreateAndRevert',
+    TMode
+  >({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: '__quoteCreateAndRevert',
+    ...config,
+  } as any)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterBuyNft<
   TMode extends WriteContractMode = undefined,
@@ -13113,7 +13172,7 @@ export function useUniNftRouterBuyNft<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreate<
   TMode extends WriteContractMode = undefined,
@@ -13150,7 +13209,7 @@ export function useUniNftRouterCreate<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterLockAcquired<
   TMode extends WriteContractMode = undefined,
@@ -13188,10 +13247,92 @@ export function useUniNftRouterLockAcquired<
 }
 
 /**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function useUniNftRouterQuoteBuyNft<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          'quoteBuyNft'
+        >['request']['abi'],
+        'quoteBuyNft',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: 'quoteBuyNft'
+      }
+    : UseContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft', TMode> & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: 'quoteBuyNft'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<typeof uniNftRouterABI, 'quoteBuyNft', TMode>({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteBuyNft',
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function useUniNftRouterQuoteCreate<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          'quoteCreate'
+        >['request']['abi'],
+        'quoteCreate',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: 'quoteCreate'
+      }
+    : UseContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate', TMode> & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: 'quoteCreate'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<typeof uniNftRouterABI, 'quoteCreate', TMode>({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteCreate',
+    ...config,
+  } as any)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterSellNft<
   TMode extends WriteContractMode = undefined,
@@ -13228,7 +13369,7 @@ export function useUniNftRouterSellNft<
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
   config: Omit<
@@ -13247,10 +13388,39 @@ export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
 }
 
 /**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function usePrepareUniNftRouterQuoteCreateAndRevert(
+  config: Omit<
+    UsePrepareContractWriteConfig<
+      typeof uniNftRouterABI,
+      '__quoteCreateAndRevert'
+    >,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: '__quoteCreateAndRevert',
+    ...config,
+  } as UsePrepareContractWriteConfig<
+    typeof uniNftRouterABI,
+    '__quoteCreateAndRevert'
+  >)
+}
+
+/**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterBuyNft(
   config: Omit<
@@ -13273,7 +13443,7 @@ export function usePrepareUniNftRouterBuyNft(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterCreate(
   config: Omit<
@@ -13296,7 +13466,7 @@ export function usePrepareUniNftRouterCreate(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterLockAcquired(
   config: Omit<
@@ -13316,10 +13486,56 @@ export function usePrepareUniNftRouterLockAcquired(
 }
 
 /**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function usePrepareUniNftRouterQuoteBuyNft(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft'>,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteBuyNft',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
+ */
+export function usePrepareUniNftRouterQuoteCreate(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate'>,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteCreate',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate'>)
+}
+
+/**
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterSellNft(
   config: Omit<
@@ -13342,7 +13558,7 @@ export function usePrepareUniNftRouterSellNft(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterEvent<TEventName extends string>(
   config: Omit<
@@ -13364,7 +13580,7 @@ export function useUniNftRouterEvent<TEventName extends string>(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__ and `eventName` set to `"Created"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreatedEvent(
   config: Omit<
@@ -13492,6 +13708,25 @@ export function useUniNftTokenGetPoolKey<
   return useContractRead({
     abi: uniNftTokenABI,
     functionName: 'getPoolKey',
+    ...config,
+  } as UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>)
+}
+
+/**
+ * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftTokenABI}__ and `functionName` set to `"getTokenIdsByOwner"`.
+ */
+export function useUniNftTokenGetTokenIdsByOwner<
+  TFunctionName extends 'getTokenIdsByOwner',
+  TSelectData = ReadContractResult<typeof uniNftTokenABI, TFunctionName>,
+>(
+  config: Omit<
+    UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>,
+    'abi' | 'functionName'
+  > = {} as any,
+) {
+  return useContractRead({
+    abi: uniNftTokenABI,
+    functionName: 'getTokenIdsByOwner',
     ...config,
   } as UseContractReadConfig<typeof uniNftTokenABI, TFunctionName, TSelectData>)
 }

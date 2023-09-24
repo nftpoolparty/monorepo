@@ -64,6 +64,8 @@ contract UniNftRouter is ILockCallback {
         MGR = mgr;
     }
 
+    error FailedToRefund();
+
     function create(
         string memory nftName,
         string memory nftSymbol,
@@ -88,7 +90,7 @@ contract UniNftRouter is ILockCallback {
         emit Created(nftToken, nftName);
         if (ethUsed < msg.value) {
             (bool success,) = payable(msg.sender).call{value: msg.value - ethUsed}("");
-            require(success, 'failed to refund caller');
+            revert FailedToRefund();
         }
     }
 
@@ -104,7 +106,7 @@ contract UniNftRouter is ILockCallback {
         external
         returns (UniNftToken nftToken, uint256 ethUsed, uint256 ethPrice)
     {
-        try this.__quoteCreate(
+        try this.__quoteCreateAndRevert(
             nftName,
             nftSymbol,
             maxSupply,
@@ -130,7 +132,7 @@ contract UniNftRouter is ILockCallback {
         }
     }
 
-    function __quoteCreate(
+    function __quoteCreateAndRevert(
         string memory nftName,
         string memory nftSymbol,
         uint128 maxSupply,
@@ -228,7 +230,7 @@ contract UniNftRouter is ILockCallback {
         ), (uint256));
         if (price < msg.value) {
             (bool success,) = payable(msg.sender).call{value: msg.value - price}("");
-            require(success, 'failed to refund caller');
+            revert FailedToRefund();
         }
     }
 
