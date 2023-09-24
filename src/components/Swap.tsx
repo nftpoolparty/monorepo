@@ -151,8 +151,10 @@ function Sell({ nftContractAddress }: { nftContractAddress: Address }) {
 
   console.log({ tokenIds });
 
+  const minPrice = 1n;
+
   const { data: sellEstimationResult } = usePrepareUniNftRouterSellNft({
-    args: [nftContractAddress, tokenId || 0n, parseEther("0.0001"), address!],
+    args: [nftContractAddress, tokenId || 0n, minPrice, address!],
     enabled: !!tokenId,
   });
 
@@ -170,8 +172,6 @@ function Sell({ nftContractAddress }: { nftContractAddress: Address }) {
   }, []);
 
   const totalCost = sellEstimation ? sellEstimation * quantity : 0n;
-
-  const minPrice = parseEther("0.0001");
 
   const { config, isError, error } = usePrepareUniNftRouterSellNft({
     args: [nftContractAddress, tokenId || 0n, minPrice, address!],
