@@ -92,7 +92,7 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="relative my-4 px-3 py-2.5 rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+      <div className="relative my-4 rounded shadow-sm ring-1 ">
         <img src={tokenUri} title="nft-media" width={200} />
         <span className="text-white">
           {tokenName} {tokenSymbol}
@@ -122,13 +122,29 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
           </span>
         </div>
       </div>
-      <div className="relative my-4 px-3 py-2.5 rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+      <div className="relative rounded-md my-4 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 bg-white">
         <label
           htmlFor="quantity"
-          className="block text-lg font-medium text-white"
+          className="block text-xs font-medium text-gray-900"
         >
-          Mint Price: {formatEther(totalCost)} ETH
+          Mint Price
         </label>
+        <input
+          type="number"
+          step="1"
+          min={1}
+          max={1}
+          name="quantity"
+          id="quantity"
+          className="appearance-none border-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          value={formatEther(totalCost)}
+          onChange={handleQuantityChanged}
+        />
+        <div className="pointer-events-none absolute inset-y-0 right-10 top-5 flex items-center pr-3 text-gray-700">
+          <span className="text-gray-500 sm:text-sm" id="price-currency">
+            ETH
+          </span>
+        </div>
       </div>
       <div className="flex items-center justify-between">
         <button
@@ -139,6 +155,7 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
           Mint {Number(quantity)} NFT(s)
         </button>
       </div>
+
       {isError && error && <div>{error.message}</div>}
       {isLoading && <ProcessingMessage hash={data?.hash} />}
       {isSuccess && <div>Token minted!</div>}
@@ -301,11 +318,11 @@ function ApproveSell({ nftContractAddress }: { nftContractAddress: Address }) {
     <form onSubmit={handleSubmit}>
       <div className="flex items-center justify-between">
         <button
-          className="bg-white text-purple hover:bg-green-dark font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-white text-purple hover:bg-green-dark py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
           disabled={!write || isLoading}
         >
-          Approve Transfer of NFTs to Router
+          Approve NFTs to Router
         </button>
       </div>
       {isError && error && <div>{error.message}</div>}
@@ -369,7 +386,7 @@ export function Swap() {
       </nav>
       <div className={`max-w-md mx-auto p-4 rounded-lg bg-purple-500`}>
         <p className="mb-2 text-white">
-          Number of nfts owned: {Number(data || 0n)}
+          number of nfts owned: {Number(data || 0n)}
         </p>
         {mode === "mint" && <Buy nftContractAddress={nftContractAddress} />}
         {mode === "sell" && Number(data || 0n) > 0n && (
