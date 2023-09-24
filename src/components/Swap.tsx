@@ -2,12 +2,21 @@
 
 import { useSearchParams } from "next/navigation";
 import { Address, formatEther } from "viem";
-import { useAccount, useWaitForTransaction } from "wagmi";
 import {
-  useMultiEdition721BalanceOf,
-  useMultiEdition721MintBatch,
-  useMultiEdition721TokenPrice,
-  usePrepareMultiEdition721MintBatch,
+  useAccount,
+  useBalance,
+  useChainId,
+  useContractRead,
+  useWaitForTransaction,
+} from "wagmi";
+import {
+  uniNftHookABI,
+  uniNftRouterABI,
+  uniNftRouterAddress,
+  usePrepareUniNftRouterBuyNft,
+  usePrepareUniNftRouterCreate,
+  useUniNftRouterBuyNft,
+  useUniNftTokenBalanceOf,
 } from "../generated";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { ProcessingMessage } from "./Forms";
@@ -16,10 +25,26 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
   const { address } = useAccount();
   const [quantity, setQuantity] = useState(1n);
 
-  const { data: tokenPrice } = useMultiEdition721TokenPrice({
-    address: nftContractAddress,
-    watch: true,
+  const chainId = useChainId();
+
+  const { data: balance } = useBalance();
+
+  /*
+    UniNftToken token,
+    uint256 maxPrice,
+    address receiver,
+    bytes memory receiverData
+  */
+
+  const balanceValue = balance?.value;
+
+  const { data: buyEstimation } = usePrepareUniNftRouterBuyNft({
+    value: balanceValue || 0n,
+    args: [nftContractAddress, balanceValue || 0n, address!, "0x"],
+    enabled: !!balanceValue,
   });
+
+  const price = buyEstimation ? buyEstimation.result : null;
 
   const handleQuantityChanged = useCallback((e: ChangeEvent) => {
     // convert to bigint before setting
@@ -30,15 +55,15 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
     e.preventDefault();
   }, []);
 
-  const totalCost = tokenPrice ? tokenPrice * quantity : 0n;
+  const totalCost = price ? price * quantity : 0n;
 
-  const { config, isError, error } = usePrepareMultiEdition721MintBatch({
-    args: [quantity],
-    value: totalCost,
-    address: nftContractAddress,
+  const { config, isError, error } = usePrepareUniNftRouterBuyNft({
+    args: [nftContractAddress, price || 0n, address!, "0x"],
+    value: price || 0n,
+    enabled: !!price
   });
 
-  const { data, write, isSuccess } = useMultiEdition721MintBatch({
+  const { data, write, isSuccess } = useUniNftRouterBuyNft({
     ...config,
   });
 
@@ -71,6 +96,7 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
           type="number"
           step="1"
           min={1}
+          max={1}
           name="quantity"
           id="quantity"
           className="appearance-none border-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -129,7 +155,7 @@ export function Swap() {
 
   const { address } = useAccount();
 
-  const { data } = useMultiEdition721BalanceOf({
+  const { data } = useUniNftTokenBalanceOf({
     args: [address!],
     address: nftContractAddress,
   });
