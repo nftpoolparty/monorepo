@@ -126,7 +126,6 @@ function SetCreate() {
     },
     [write]
   );
-
   return (
     <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg`}>
       <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">

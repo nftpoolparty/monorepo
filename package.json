@@ -11,7 +11,8 @@
     "dev:foundry": "npm run dev & wagmi generate --watch & npm run anvil",
     "start": "next start",
     "lint": "next lint",
-    "wagmi": "wagmi generate"
+    "wagmi": "wagmi generate",
+    "prettier": "prettier --write src/**/*"
   },
   "dependencies": {
     "@openzeppelin/contracts": "4.9.2",
