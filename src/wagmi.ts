@@ -8,6 +8,7 @@ import { publicProvider } from 'wagmi/providers/public'
 
 const scrollSepolia = {
   ...scrollTestnet,
+  id: 534351,
   rpcUrls: {
     default: {
       http: ['https://sepolia-rpc.scroll.io/'],
