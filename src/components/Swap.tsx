@@ -130,15 +130,13 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
           Mint Price
         </label>
         <input
-          type="number"
-          step="1"
-          min={1}
-          max={1}
-          name="quantity"
-          id="quantity"
+          type="text"
+          name="mintPrice"
+          id="mintPrice"
           className="appearance-none border-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           value={formatEther(totalCost)}
           onChange={handleQuantityChanged}
+          disabled
         />
         <div className="pointer-events-none absolute inset-y-0 right-10 top-5 flex items-center pr-3 text-gray-700">
           <span className="text-gray-500 sm:text-sm" id="price-currency">
