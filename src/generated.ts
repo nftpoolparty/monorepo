@@ -4276,7 +4276,7 @@ export const uniNftHookABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterABI = [
   {
@@ -4286,6 +4286,7 @@ export const uniNftRouterABI = [
       { name: 'mgr', internalType: 'contract IPoolManager', type: 'address' },
     ],
   },
+  { type: 'error', inputs: [], name: 'FailedToRefund' },
   { type: 'error', inputs: [], name: 'InvalidTick' },
   {
     type: 'error',
@@ -4463,16 +4464,16 @@ export const uniNftRouterABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterAddress = {
   31337: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
-  534351: '0x2093FA634730172d29C618879428336b021f7732',
+  534351: '0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817',
 } as const
 
 /**
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export const uniNftRouterConfig = {
   address: uniNftRouterAddress,
@@ -12930,7 +12931,7 @@ export function usePrepareUniNftHookLockAcquired(
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterRead<
   TFunctionName extends string,
@@ -12959,7 +12960,7 @@ export function useUniNftRouterRead<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"MGR"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterMgr<
   TFunctionName extends 'MGR',
@@ -12989,7 +12990,7 @@ export function useUniNftRouterMgr<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"findHookSalt"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterFindHookSalt<
   TFunctionName extends 'findHookSalt',
@@ -13019,7 +13020,7 @@ export function useUniNftRouterFindHookSalt<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"isValidToken"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterIsValidToken<
   TFunctionName extends 'isValidToken',
@@ -13049,7 +13050,7 @@ export function useUniNftRouterIsValidToken<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterWrite<
   TFunctionName extends string,
@@ -13085,7 +13086,7 @@ export function useUniNftRouterWrite<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteCreateAndRevert<
   TMode extends WriteContractMode = undefined,
@@ -13134,7 +13135,7 @@ export function useUniNftRouterQuoteCreateAndRevert<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterBuyNft<
   TMode extends WriteContractMode = undefined,
@@ -13171,7 +13172,7 @@ export function useUniNftRouterBuyNft<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreate<
   TMode extends WriteContractMode = undefined,
@@ -13208,7 +13209,7 @@ export function useUniNftRouterCreate<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterLockAcquired<
   TMode extends WriteContractMode = undefined,
@@ -13249,7 +13250,7 @@ export function useUniNftRouterLockAcquired<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteBuyNft<
   TMode extends WriteContractMode = undefined,
@@ -13290,7 +13291,7 @@ export function useUniNftRouterQuoteBuyNft<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterQuoteCreate<
   TMode extends WriteContractMode = undefined,
@@ -13331,7 +13332,7 @@ export function useUniNftRouterQuoteCreate<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterSellNft<
   TMode extends WriteContractMode = undefined,
@@ -13368,7 +13369,7 @@ export function useUniNftRouterSellNft<
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
   config: Omit<
@@ -13390,7 +13391,7 @@ export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteCreateAndRevert(
   config: Omit<
@@ -13419,7 +13420,7 @@ export function usePrepareUniNftRouterQuoteCreateAndRevert(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterBuyNft(
   config: Omit<
@@ -13442,7 +13443,7 @@ export function usePrepareUniNftRouterBuyNft(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterCreate(
   config: Omit<
@@ -13465,7 +13466,7 @@ export function usePrepareUniNftRouterCreate(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"lockAcquired"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterLockAcquired(
   config: Omit<
@@ -13488,7 +13489,7 @@ export function usePrepareUniNftRouterLockAcquired(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteBuyNft(
   config: Omit<
@@ -13511,7 +13512,7 @@ export function usePrepareUniNftRouterQuoteBuyNft(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterQuoteCreate(
   config: Omit<
@@ -13534,7 +13535,7 @@ export function usePrepareUniNftRouterQuoteCreate(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function usePrepareUniNftRouterSellNft(
   config: Omit<
@@ -13557,7 +13558,7 @@ export function usePrepareUniNftRouterSellNft(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterEvent<TEventName extends string>(
   config: Omit<
@@ -13579,7 +13580,7 @@ export function useUniNftRouterEvent<TEventName extends string>(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link uniNftRouterABI}__ and `eventName` set to `"Created"`.
  *
  * -
- * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817)
  */
 export function useUniNftRouterCreatedEvent(
   config: Omit<
