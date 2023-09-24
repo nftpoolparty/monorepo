@@ -370,7 +370,7 @@ contract UniNftRouter is ILockCallback {
         if (erc20Amount > 0) {
             MGR.settle(Currency.wrap(address(hook)));
         }
-        return abi.encode(ethAmount);
+        return abi.encode(-ethAmount);
     }
 
     function findHookSalt(
