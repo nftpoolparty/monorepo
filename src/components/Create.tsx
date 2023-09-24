@@ -60,7 +60,7 @@ function SetCreate() {
   const [tokenURI, setTokenURI] = useState("ipfs.io//ipfs");
   const [maxSupply, setMaxSupply] = useState(100n);
   const [initialPrice, setInitialPrice] = useState<`${number}`>(
-    () => parseEther("0.001").toString() as `${number}`
+    () => parseEther("0.00001").toString() as `${number}`
   );
 
   const { refetch, data: value } = useNftPoolFactoryGetLiquidityToProvide({
