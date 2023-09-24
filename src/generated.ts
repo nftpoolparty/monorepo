@@ -650,7 +650,7 @@ export const multiEdition721ABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export const nftPoolFactoryABI = [
   {
@@ -695,16 +695,16 @@ export const nftPoolFactoryABI = [
 
 /**
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export const nftPoolFactoryAddress = {
   31337: '0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9',
-  534353: '0x131F554482F26206A33acf5A22E89A91c5D91f9A',
+  534351: '0x1E709c518f89C9E16722C92bc710089E75a3F70f',
 } as const
 
 /**
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export const nftPoolFactoryConfig = {
   address: nftPoolFactoryAddress,
@@ -2404,7 +2404,7 @@ export function useMultiEdition721TransferEvent(
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryRead<
   TFunctionName extends string,
@@ -2434,7 +2434,7 @@ export function useNftPoolFactoryRead<
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"getLiquidityToProvide"`.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryGetLiquidityToProvide<
   TFunctionName extends 'getLiquidityToProvide',
@@ -2465,7 +2465,7 @@ export function useNftPoolFactoryGetLiquidityToProvide<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryWrite<
   TFunctionName extends string,
@@ -2502,7 +2502,7 @@ export function useNftPoolFactoryWrite<
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryCreate<
   TMode extends WriteContractMode = undefined,
@@ -2540,7 +2540,7 @@ export function useNftPoolFactoryCreate<
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function usePrepareNftPoolFactoryWrite<TFunctionName extends string>(
   config: Omit<
@@ -2563,7 +2563,7 @@ export function usePrepareNftPoolFactoryWrite<TFunctionName extends string>(
  * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `functionName` set to `"create"`.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function usePrepareNftPoolFactoryCreate(
   config: Omit<
@@ -2587,7 +2587,7 @@ export function usePrepareNftPoolFactoryCreate(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link nftPoolFactoryABI}__.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryEvent<TEventName extends string>(
   config: Omit<
@@ -2610,7 +2610,7 @@ export function useNftPoolFactoryEvent<TEventName extends string>(
  * Wraps __{@link useContractEvent}__ with `abi` set to __{@link nftPoolFactoryABI}__ and `eventName` set to `"Created"`.
  *
  * -
- * - [__View Contract on Scroll Testnet Blockscout__](https://blockscout.scroll.io/address/0x131f554482f26206a33acf5a22e89a91c5d91f9a)
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x1e709c518f89c9e16722c92bc710089e75a3f70f)
  */
 export function useNftPoolFactoryCreatedEvent(
   config: Omit<

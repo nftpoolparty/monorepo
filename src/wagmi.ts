@@ -6,9 +6,24 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 import { publicProvider } from 'wagmi/providers/public'
 
+const scrollSepolia = {
+  ...scrollTestnet,
+  rpcUrls: {
+    default: {
+      http: ['https://sepolia-rpc.scroll.io/'],
+    },
+    public: {
+      http: ['https://sepolia-rpc.scroll.io/']
+    }
+  }
+}
+
+scrollTestnet.rpcUrls
+
+
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    scrollTestnet,
+    scrollSepolia,
     ...(process.env.NODE_ENV === 'development' ? [foundry] : []),
   ],
   [
