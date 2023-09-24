@@ -2846,208 +2846,6 @@ export const mathABI = [
 ] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// MultiEdition721
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const multiEdition721ABI = [
-  {
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-    inputs: [
-      { name: '_name', internalType: 'string', type: 'string' },
-      { name: '_symbol', internalType: 'string', type: 'string' },
-      { name: '_tokenURI', internalType: 'string', type: 'string' },
-      { name: '_maxSupply', internalType: 'uint256', type: 'uint256' },
-      { name: '_initialPrice', internalType: 'uint256', type: 'uint256' },
-    ],
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      { name: 'id', internalType: 'uint256', type: 'uint256', indexed: true },
-    ],
-    name: 'Approval',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'operator',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      { name: 'approved', internalType: 'bool', type: 'bool', indexed: false },
-    ],
-    name: 'ApprovalForAll',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
-      { name: 'id', internalType: 'uint256', type: 'uint256', indexed: true },
-    ],
-    name: 'Transfer',
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'id', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'approve',
-    outputs: [],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'getApproved',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [
-      { name: '', internalType: 'address', type: 'address' },
-      { name: '', internalType: 'address', type: 'address' },
-    ],
-    name: 'isApprovedForAll',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-  },
-  {
-    stateMutability: 'payable',
-    type: 'function',
-    inputs: [{ name: 'quantity', internalType: 'uint256', type: 'uint256' }],
-    name: 'mintBatch',
-    outputs: [],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'name',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'id', internalType: 'uint256', type: 'uint256' }],
-    name: 'ownerOf',
-    outputs: [{ name: 'owner', internalType: 'address', type: 'address' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'id', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'safeTransferFrom',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'id', internalType: 'uint256', type: 'uint256' },
-      { name: 'data', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'safeTransferFrom',
-    outputs: [],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'operator', internalType: 'address', type: 'address' },
-      { name: 'approved', internalType: 'bool', type: 'bool' },
-    ],
-    name: 'setApprovalForAll',
-    outputs: [],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
-    name: 'supportsInterface',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'symbol',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'tokenPrice',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    name: 'tokenURI',
-    outputs: [{ name: '', internalType: 'string', type: 'string' }],
-  },
-  {
-    stateMutability: 'view',
-    type: 'function',
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-  },
-  {
-    stateMutability: 'nonpayable',
-    type: 'function',
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'id', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'transferFrom',
-    outputs: [],
-  },
-] as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // NoDelegateCall
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -4490,6 +4288,32 @@ export const uniNftRouterABI = [
   },
   { type: 'error', inputs: [], name: 'InvalidTick' },
   {
+    type: 'error',
+    inputs: [{ name: 'price', internalType: 'uint256', type: 'uint256' }],
+    name: 'QuoteBuyRevert',
+  },
+  {
+    type: 'error',
+    inputs: [
+      { name: 'ethNeeded', internalType: 'uint256', type: 'uint256' },
+      { name: 'price', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'QuoteCreateInitialPositionError',
+  },
+  {
+    type: 'error',
+    inputs: [
+      {
+        name: 'nftToken',
+        internalType: 'contract UniNftToken',
+        type: 'address',
+      },
+      { name: 'ethNeeded', internalType: 'uint256', type: 'uint256' },
+      { name: 'price', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'QuoteCreateRevert',
+  },
+  {
     type: 'event',
     anonymous: false,
     inputs: [
@@ -4511,6 +4335,22 @@ export const uniNftRouterABI = [
     outputs: [
       { name: '', internalType: 'contract IPoolManager', type: 'address' },
     ],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'nftName', internalType: 'string', type: 'string' },
+      { name: 'nftSymbol', internalType: 'string', type: 'string' },
+      { name: 'maxSupply', internalType: 'uint128', type: 'uint128' },
+      { name: 'tokenUri', internalType: 'string', type: 'string' },
+      { name: 'fee', internalType: 'uint24', type: 'uint24' },
+      { name: 'hookSalt', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethDeposit', internalType: 'uint256', type: 'uint256' },
+      { name: 'caller', internalType: 'address', type: 'address' },
+    ],
+    name: '__quoteCreateAndRevert',
+    outputs: [],
   },
   {
     stateMutability: 'payable',
@@ -4580,6 +4420,38 @@ export const uniNftRouterABI = [
     type: 'function',
     inputs: [
       { name: 'token', internalType: 'contract UniNftToken', type: 'address' },
+    ],
+    name: 'quoteBuyNft',
+    outputs: [{ name: 'price', internalType: 'uint256', type: 'uint256' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'nftName', internalType: 'string', type: 'string' },
+      { name: 'nftSymbol', internalType: 'string', type: 'string' },
+      { name: 'maxSupply', internalType: 'uint128', type: 'uint128' },
+      { name: 'tokenUri', internalType: 'string', type: 'string' },
+      { name: 'fee', internalType: 'uint24', type: 'uint24' },
+      { name: 'hookSalt', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethDeposit', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'quoteCreate',
+    outputs: [
+      {
+        name: 'nftToken',
+        internalType: 'contract UniNftToken',
+        type: 'address',
+      },
+      { name: 'ethUsed', internalType: 'uint256', type: 'uint256' },
+      { name: 'ethPrice', internalType: 'uint256', type: 'uint256' },
+    ],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract UniNftToken', type: 'address' },
       { name: 'tokenId', internalType: 'uint256', type: 'uint256' },
       { name: 'minPrice', internalType: 'uint256', type: 'uint256' },
       { name: 'receiver', internalType: 'address payable', type: 'address' },
@@ -4594,7 +4466,7 @@ export const uniNftRouterABI = [
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
  */
 export const uniNftRouterAddress = {
-  31337: '0xA15BB66138824a1c7167f5E85b957d04Dd34E468',
+  31337: '0xe1DA8919f262Ee86f9BE05059C9280142CF23f48',
   534351: '0x2093FA634730172d29C618879428336b021f7732',
 } as const
 
@@ -10724,655 +10596,6 @@ export function useIProtocolFeeControllerProtocolFeesForPool<
 }
 
 /**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__.
- */
-export function useMultiEdition721Read<
-  TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"balanceOf"`.
- */
-export function useMultiEdition721BalanceOf<
-  TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'balanceOf',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"getApproved"`.
- */
-export function useMultiEdition721GetApproved<
-  TFunctionName extends 'getApproved',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'getApproved',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"isApprovedForAll"`.
- */
-export function useMultiEdition721IsApprovedForAll<
-  TFunctionName extends 'isApprovedForAll',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'isApprovedForAll',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"name"`.
- */
-export function useMultiEdition721Name<
-  TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'name',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"ownerOf"`.
- */
-export function useMultiEdition721OwnerOf<
-  TFunctionName extends 'ownerOf',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'ownerOf',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"supportsInterface"`.
- */
-export function useMultiEdition721SupportsInterface<
-  TFunctionName extends 'supportsInterface',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'supportsInterface',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"symbol"`.
- */
-export function useMultiEdition721Symbol<
-  TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'symbol',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"tokenPrice"`.
- */
-export function useMultiEdition721TokenPrice<
-  TFunctionName extends 'tokenPrice',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'tokenPrice',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"tokenURI"`.
- */
-export function useMultiEdition721TokenUri<
-  TFunctionName extends 'tokenURI',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'tokenURI',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractRead}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"totalSupply"`.
- */
-export function useMultiEdition721TotalSupply<
-  TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof multiEdition721ABI, TFunctionName>,
->(
-  config: Omit<
-    UseContractReadConfig<
-      typeof multiEdition721ABI,
-      TFunctionName,
-      TSelectData
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return useContractRead({
-    abi: multiEdition721ABI,
-    functionName: 'totalSupply',
-    ...config,
-  } as UseContractReadConfig<
-    typeof multiEdition721ABI,
-    TFunctionName,
-    TSelectData
-  >)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__.
- */
-export function useMultiEdition721Write<
-  TFunctionName extends string,
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          string
-        >['request']['abi'],
-        TFunctionName,
-        TMode
-      >
-    : UseContractWriteConfig<
-        typeof multiEdition721ABI,
-        TFunctionName,
-        TMode
-      > & {
-        abi?: never
-      } = {} as any,
-) {
-  return useContractWrite<typeof multiEdition721ABI, TFunctionName, TMode>({
-    abi: multiEdition721ABI,
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"approve"`.
- */
-export function useMultiEdition721Approve<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          'approve'
-        >['request']['abi'],
-        'approve',
-        TMode
-      > & { functionName?: 'approve' }
-    : UseContractWriteConfig<typeof multiEdition721ABI, 'approve', TMode> & {
-        abi?: never
-        functionName?: 'approve'
-      } = {} as any,
-) {
-  return useContractWrite<typeof multiEdition721ABI, 'approve', TMode>({
-    abi: multiEdition721ABI,
-    functionName: 'approve',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"mintBatch"`.
- */
-export function useMultiEdition721MintBatch<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          'mintBatch'
-        >['request']['abi'],
-        'mintBatch',
-        TMode
-      > & { functionName?: 'mintBatch' }
-    : UseContractWriteConfig<typeof multiEdition721ABI, 'mintBatch', TMode> & {
-        abi?: never
-        functionName?: 'mintBatch'
-      } = {} as any,
-) {
-  return useContractWrite<typeof multiEdition721ABI, 'mintBatch', TMode>({
-    abi: multiEdition721ABI,
-    functionName: 'mintBatch',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"safeTransferFrom"`.
- */
-export function useMultiEdition721SafeTransferFrom<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          'safeTransferFrom'
-        >['request']['abi'],
-        'safeTransferFrom',
-        TMode
-      > & { functionName?: 'safeTransferFrom' }
-    : UseContractWriteConfig<
-        typeof multiEdition721ABI,
-        'safeTransferFrom',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'safeTransferFrom'
-      } = {} as any,
-) {
-  return useContractWrite<typeof multiEdition721ABI, 'safeTransferFrom', TMode>(
-    {
-      abi: multiEdition721ABI,
-      functionName: 'safeTransferFrom',
-      ...config,
-    } as any,
-  )
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"setApprovalForAll"`.
- */
-export function useMultiEdition721SetApprovalForAll<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          'setApprovalForAll'
-        >['request']['abi'],
-        'setApprovalForAll',
-        TMode
-      > & { functionName?: 'setApprovalForAll' }
-    : UseContractWriteConfig<
-        typeof multiEdition721ABI,
-        'setApprovalForAll',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'setApprovalForAll'
-      } = {} as any,
-) {
-  return useContractWrite<
-    typeof multiEdition721ABI,
-    'setApprovalForAll',
-    TMode
-  >({
-    abi: multiEdition721ABI,
-    functionName: 'setApprovalForAll',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link useContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"transferFrom"`.
- */
-export function useMultiEdition721TransferFrom<
-  TMode extends WriteContractMode = undefined,
->(
-  config: TMode extends 'prepared'
-    ? UseContractWriteConfig<
-        PrepareWriteContractResult<
-          typeof multiEdition721ABI,
-          'transferFrom'
-        >['request']['abi'],
-        'transferFrom',
-        TMode
-      > & { functionName?: 'transferFrom' }
-    : UseContractWriteConfig<
-        typeof multiEdition721ABI,
-        'transferFrom',
-        TMode
-      > & {
-        abi?: never
-        functionName?: 'transferFrom'
-      } = {} as any,
-) {
-  return useContractWrite<typeof multiEdition721ABI, 'transferFrom', TMode>({
-    abi: multiEdition721ABI,
-    functionName: 'transferFrom',
-    ...config,
-  } as any)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__.
- */
-export function usePrepareMultiEdition721Write<TFunctionName extends string>(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof multiEdition721ABI, TFunctionName>,
-    'abi'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, TFunctionName>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"approve"`.
- */
-export function usePrepareMultiEdition721Approve(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'approve'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    functionName: 'approve',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'approve'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"mintBatch"`.
- */
-export function usePrepareMultiEdition721MintBatch(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'mintBatch'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    functionName: 'mintBatch',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'mintBatch'>)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"safeTransferFrom"`.
- */
-export function usePrepareMultiEdition721SafeTransferFrom(
-  config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof multiEdition721ABI,
-      'safeTransferFrom'
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    functionName: 'safeTransferFrom',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof multiEdition721ABI,
-    'safeTransferFrom'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"setApprovalForAll"`.
- */
-export function usePrepareMultiEdition721SetApprovalForAll(
-  config: Omit<
-    UsePrepareContractWriteConfig<
-      typeof multiEdition721ABI,
-      'setApprovalForAll'
-    >,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    functionName: 'setApprovalForAll',
-    ...config,
-  } as UsePrepareContractWriteConfig<
-    typeof multiEdition721ABI,
-    'setApprovalForAll'
-  >)
-}
-
-/**
- * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link multiEdition721ABI}__ and `functionName` set to `"transferFrom"`.
- */
-export function usePrepareMultiEdition721TransferFrom(
-  config: Omit<
-    UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'transferFrom'>,
-    'abi' | 'functionName'
-  > = {} as any,
-) {
-  return usePrepareContractWrite({
-    abi: multiEdition721ABI,
-    functionName: 'transferFrom',
-    ...config,
-  } as UsePrepareContractWriteConfig<typeof multiEdition721ABI, 'transferFrom'>)
-}
-
-/**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link multiEdition721ABI}__.
- */
-export function useMultiEdition721Event<TEventName extends string>(
-  config: Omit<
-    UseContractEventConfig<typeof multiEdition721ABI, TEventName>,
-    'abi'
-  > = {} as any,
-) {
-  return useContractEvent({
-    abi: multiEdition721ABI,
-    ...config,
-  } as UseContractEventConfig<typeof multiEdition721ABI, TEventName>)
-}
-
-/**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link multiEdition721ABI}__ and `eventName` set to `"Approval"`.
- */
-export function useMultiEdition721ApprovalEvent(
-  config: Omit<
-    UseContractEventConfig<typeof multiEdition721ABI, 'Approval'>,
-    'abi' | 'eventName'
-  > = {} as any,
-) {
-  return useContractEvent({
-    abi: multiEdition721ABI,
-    eventName: 'Approval',
-    ...config,
-  } as UseContractEventConfig<typeof multiEdition721ABI, 'Approval'>)
-}
-
-/**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link multiEdition721ABI}__ and `eventName` set to `"ApprovalForAll"`.
- */
-export function useMultiEdition721ApprovalForAllEvent(
-  config: Omit<
-    UseContractEventConfig<typeof multiEdition721ABI, 'ApprovalForAll'>,
-    'abi' | 'eventName'
-  > = {} as any,
-) {
-  return useContractEvent({
-    abi: multiEdition721ABI,
-    eventName: 'ApprovalForAll',
-    ...config,
-  } as UseContractEventConfig<typeof multiEdition721ABI, 'ApprovalForAll'>)
-}
-
-/**
- * Wraps __{@link useContractEvent}__ with `abi` set to __{@link multiEdition721ABI}__ and `eventName` set to `"Transfer"`.
- */
-export function useMultiEdition721TransferEvent(
-  config: Omit<
-    UseContractEventConfig<typeof multiEdition721ABI, 'Transfer'>,
-    'abi' | 'eventName'
-  > = {} as any,
-) {
-  return useContractEvent({
-    abi: multiEdition721ABI,
-    eventName: 'Transfer',
-    ...config,
-  } as UseContractEventConfig<typeof multiEdition721ABI, 'Transfer'>)
-}
-
-/**
  * Wraps __{@link useContractRead}__ with `abi` set to __{@link ownedABI}__.
  */
 export function useOwnedRead<
@@ -13874,6 +13097,55 @@ export function useUniNftRouterWrite<
 }
 
 /**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function useUniNftRouterQuoteCreateAndRevert<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          '__quoteCreateAndRevert'
+        >['request']['abi'],
+        '__quoteCreateAndRevert',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: '__quoteCreateAndRevert'
+      }
+    : UseContractWriteConfig<
+        typeof uniNftRouterABI,
+        '__quoteCreateAndRevert',
+        TMode
+      > & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: '__quoteCreateAndRevert'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<
+    typeof uniNftRouterABI,
+    '__quoteCreateAndRevert',
+    TMode
+  >({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: '__quoteCreateAndRevert',
+    ...config,
+  } as any)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"buyNft"`.
  *
  * -
@@ -13989,6 +13261,88 @@ export function useUniNftRouterLockAcquired<
 }
 
 /**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function useUniNftRouterQuoteBuyNft<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          'quoteBuyNft'
+        >['request']['abi'],
+        'quoteBuyNft',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: 'quoteBuyNft'
+      }
+    : UseContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft', TMode> & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: 'quoteBuyNft'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<typeof uniNftRouterABI, 'quoteBuyNft', TMode>({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteBuyNft',
+    ...config,
+  } as any)
+}
+
+/**
+ * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function useUniNftRouterQuoteCreate<
+  TMode extends WriteContractMode = undefined,
+  TChainId extends number = keyof typeof uniNftRouterAddress,
+>(
+  config: TMode extends 'prepared'
+    ? UseContractWriteConfig<
+        PrepareWriteContractResult<
+          typeof uniNftRouterABI,
+          'quoteCreate'
+        >['request']['abi'],
+        'quoteCreate',
+        TMode
+      > & {
+        address?: Address
+        chainId?: TChainId
+        functionName?: 'quoteCreate'
+      }
+    : UseContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate', TMode> & {
+        abi?: never
+        address?: never
+        chainId?: TChainId
+        functionName?: 'quoteCreate'
+      } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return useContractWrite<typeof uniNftRouterABI, 'quoteCreate', TMode>({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteCreate',
+    ...config,
+  } as any)
+}
+
+/**
  * Wraps __{@link useContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"sellNft"`.
  *
  * -
@@ -14045,6 +13399,35 @@ export function usePrepareUniNftRouterWrite<TFunctionName extends string>(
     address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
     ...config,
   } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, TFunctionName>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"__quoteCreateAndRevert"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function usePrepareUniNftRouterQuoteCreateAndRevert(
+  config: Omit<
+    UsePrepareContractWriteConfig<
+      typeof uniNftRouterABI,
+      '__quoteCreateAndRevert'
+    >,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: '__quoteCreateAndRevert',
+    ...config,
+  } as UsePrepareContractWriteConfig<
+    typeof uniNftRouterABI,
+    '__quoteCreateAndRevert'
+  >)
 }
 
 /**
@@ -14114,6 +13497,52 @@ export function usePrepareUniNftRouterLockAcquired(
     functionName: 'lockAcquired',
     ...config,
   } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'lockAcquired'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteBuyNft"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function usePrepareUniNftRouterQuoteBuyNft(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft'>,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteBuyNft',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteBuyNft'>)
+}
+
+/**
+ * Wraps __{@link usePrepareContractWrite}__ with `abi` set to __{@link uniNftRouterABI}__ and `functionName` set to `"quoteCreate"`.
+ *
+ * -
+ * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
+ */
+export function usePrepareUniNftRouterQuoteCreate(
+  config: Omit<
+    UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate'>,
+    'abi' | 'address' | 'functionName'
+  > & { chainId?: keyof typeof uniNftRouterAddress } = {} as any,
+) {
+  const { chain } = useNetwork()
+  const defaultChainId = useChainId()
+  const chainId = config.chainId ?? chain?.id ?? defaultChainId
+  return usePrepareContractWrite({
+    abi: uniNftRouterABI,
+    address: uniNftRouterAddress[chainId as keyof typeof uniNftRouterAddress],
+    functionName: 'quoteCreate',
+    ...config,
+  } as UsePrepareContractWriteConfig<typeof uniNftRouterABI, 'quoteCreate'>)
 }
 
 /**

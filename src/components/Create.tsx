@@ -12,8 +12,10 @@ import { useAccount, useNetwork, useWaitForTransaction } from "wagmi";
 
 import {
   usePrepareUniNftRouterCreate,
+  usePrepareUniNftRouterQuoteCreate,
   useUniNftRouterCreate,
   useUniNftRouterFindHookSalt,
+  useUniNftRouterQuoteCreate,
 } from "../generated";
 import { Address, etherUnits, formatEther, parseEther } from "viem";
 import { parseCreateReceipt } from "../utils/txParsing";
@@ -77,18 +79,29 @@ function SetCreate() {
   
   */
 
-  const { data: estimateCreateResult } = usePrepareUniNftRouterCreate({
-    args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
-    value: BigInt(initialPrice),
-    enabled: Boolean(hookSalt) && !isFetching,
+  const { data: estimateCreateResult } = usePrepareUniNftRouterQuoteCreate({
+    args: [
+      name,
+      symbol,
+      maxSupply,
+      tokenURI,
+      fee,
+      hookSalt!,
+      BigInt(initialPrice),
+    ],
   });
 
-  const value = estimateCreateResult ? estimateCreateResult.result[1] : null;
+  const liquidityToProvide = estimateCreateResult
+    ? estimateCreateResult.result[1]
+    : null;
+  const tokenPrice = estimateCreateResult
+    ? estimateCreateResult.result[2]
+    : null;
 
   const { config, isError, error } = usePrepareUniNftRouterCreate({
     args: [name, symbol, maxSupply, tokenURI, fee, hookSalt!],
-    value: value ? value : 0n,
-    enabled: Boolean(hookSalt) && Boolean(value) && !isFetching,
+    value: liquidityToProvide ? liquidityToProvide : 0n,
+    enabled: Boolean(hookSalt) && Boolean(liquidityToProvide) && !isFetching,
   });
 
   const { data, write, isSuccess } = useUniNftRouterCreate({
@@ -184,14 +197,14 @@ function SetCreate() {
             onChange={handleMaxSupplyChanged}
           />
         </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Initial Price">
+        <FormFieldWrapperAndLabel label="Initial liquidity to provide">
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="initialPrice"
               type="number"
               step="0.001"
-              placeholder="Initial Price"
+              placeholder="Initial liquidity to provide"
               value={formatEther(BigInt(initialPrice))}
               onChange={handlePricePerTokenChanged}
             />
@@ -202,8 +215,8 @@ function SetCreate() {
             </div>
           </div>
         </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Initial liquidity to provide">
-          <label>{value ? `${formatEther(value)} ETH` : null}</label>
+        <FormFieldWrapperAndLabel label="First token price">
+          <label>{tokenPrice ? `${formatEther(tokenPrice)} ETH` : null}</label>
         </FormFieldWrapperAndLabel>
         <div className="flex items-center justify-between">
           <button

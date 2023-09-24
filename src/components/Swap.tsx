@@ -10,6 +10,7 @@ import {
 } from "wagmi";
 import {
   usePrepareUniNftRouterBuyNft,
+  usePrepareUniNftRouterQuoteBuyNft,
   useUniNftRouterBuyNft,
   useUniNftTokenBalanceOf,
 } from "../generated";
@@ -26,11 +27,8 @@ function Buy({
   const { address } = useAccount();
   const [quantity, setQuantity] = useState(1n);
 
-  const chainId = useChainId();
-
-  const { data: buyEstimation } = usePrepareUniNftRouterBuyNft({
-    value: balanceValue,
-    args: [nftContractAddress, balanceValue, address!, "0x"],
+  const { data: buyEstimation } = usePrepareUniNftRouterQuoteBuyNft({
+    args: [nftContractAddress],
   });
 
   const price = buyEstimation ? buyEstimation.result : null;

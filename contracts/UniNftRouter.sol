@@ -104,7 +104,7 @@ contract UniNftRouter is ILockCallback {
         external
         returns (UniNftToken nftToken, uint256 ethUsed, uint256 ethPrice)
     {
-        try this.__quoteCreate(
+        try this.__quoteCreateAndRevert(
             nftName,
             nftSymbol,
             maxSupply,
@@ -130,7 +130,7 @@ contract UniNftRouter is ILockCallback {
         }
     }
 
-    function __quoteCreate(
+    function __quoteCreateAndRevert(
         string memory nftName,
         string memory nftSymbol,
         uint128 maxSupply,
