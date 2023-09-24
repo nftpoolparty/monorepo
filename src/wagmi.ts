@@ -5,6 +5,11 @@ import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 import { publicProvider } from 'wagmi/providers/public'
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+
 
 const scrollSepolia = {
   ...scrollTestnet,
@@ -32,6 +37,9 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
   ],
 )
 
+// const { connectors } = ;
+
+
 export const config = createConfig({
   autoConnect: true,
   connectors: [
@@ -49,7 +57,15 @@ export const config = createConfig({
         shimDisconnect: true,
       },
     }),
+    ...getDefaultWallets({
+      appName: 'My RainbowKit App',
+      projectId: 'YOUR_PROJECT_ID',
+      chains
+    // @ts-ignore
+    }).connectors()
   ],
   publicClient,
   webSocketPublicClient,
 })
+
+export { chains };

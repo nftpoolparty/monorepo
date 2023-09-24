@@ -1,10 +1,8 @@
 import { Providers } from "./providers";
 import "./index.css";
+import "@rainbow-me/rainbowkit/styles.css";
 import { Connect } from "../components/Connect";
 import { Connected } from "../components/Connected";
-import { Account } from "../components/Account";
-import { NetworkSwitcher } from "../components/NetworkSwitcher";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
 export const metadata = {
   title: "wagmi",
