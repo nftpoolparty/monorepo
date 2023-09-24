@@ -15,9 +15,6 @@ import {FixedPointMathLib} from "solmate/utils/FixedPointMathLib.sol";
 import {LiquidityAmounts} from "v4-periphery/libraries/LiquidityAmounts.sol";
 import {PoolIdLibrary} from "v4-core/types/PoolId.sol";
 
-contract Foo {
-
-}
 contract UniNftRouter is ILockCallback {
     using PoolIdLibrary for PoolKey;
 
@@ -375,7 +372,6 @@ contract UniNftRouter is ILockCallback {
         }
         return abi.encode(ethAmount);
     }
-
 
     function findHookSalt(
         string memory nftName,
