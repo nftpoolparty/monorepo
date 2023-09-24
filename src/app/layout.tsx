@@ -4,7 +4,6 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { Connect } from "../components/Connect";
 import { Connected } from "../components/Connected";
 
-
 export const metadata = {
   title: "wagmi",
   icons: {
@@ -12,14 +11,15 @@ export const metadata = {
   },
 };
 
-import Image from 'next/image';
+import Image from "next/image";
 import { NotConnected } from "../components/NotConnected";
+import Link from "next/link";
 
-function MyComponent () {
+function MyComponent() {
   return (
-    <div  className="navvy">
+    <div className="navvy">
       {/* Replace 'your-image.jpg' with the actual path to your image */}
-      <Image 
+      <Image
         src="/images/android-chrome-512x512.png" // Path to your image in the 'public' directory
         alt="Description of your image"
         width={1920} // Set the width of the image
@@ -28,11 +28,11 @@ function MyComponent () {
     </div>
   );
 }
-function Nav () {
+function Nav() {
   return (
-    <div  className="nav">
+    <div className="nav">
       {/* Replace 'your-image.jpg' with the actual path to your image */}
-      <Image 
+      <Image
         src="/images/android-chrome-512x512.png" // Path to your image in the 'public' directory
         alt="Description of your image"
         width={512} // Set the width of the image
@@ -45,29 +45,26 @@ function Nav () {
 function Header() {
   return (
     <div className="header">
-      
+      <Link href="/" className="nftpoolparty">
+        NFT Pool Party
+      </Link>
 
-      <a href="#default" className="nftpoolparty">
-        NFT Pool Party 
-      </a>
-     
-      <a className="active" href="#create">
-        Create
-      </a> 
+      <Link className="active" href="/">
+        Create NFT Collection
+      </Link>
 
-      <a href="#swap">Swap</a>
+      <Link href="#swap">Swap</Link>
 
-      <a href="#pool">Pool</a>
+      <Link href="#pool">Pool</Link>
 
       <div className="wallet">
-      <Connect />
+        <Connect />
       </div>
-      </div>   
-
+    </div>
   );
 }
-   
-<div> </ div>
+
+<div> </div>;
 export default function RootLayout({
   children,
 }: {
@@ -80,8 +77,8 @@ export default function RootLayout({
         <Providers>
           <Header />
           <Connected>{children}</Connected>
-          <NotConnected>      
-          <MyComponent></MyComponent>
+          <NotConnected>
+            <MyComponent></MyComponent>
           </NotConnected>
         </Providers>
       </body>
