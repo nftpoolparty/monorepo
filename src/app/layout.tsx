@@ -7,6 +7,9 @@ import { NetworkSwitcher } from "../components/NetworkSwitcher";
 
 export const metadata = {
   title: "wagmi",
+  icons: {
+    icon: "/Favicon/favicon.ico"
+  }
 };
 
 export default function RootLayout({
@@ -16,6 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* <head><link rel="icon" href="/Favicon/favicon.ico" sizes="any" /></head> */}
       <body>
         <Providers>
           <Connect />

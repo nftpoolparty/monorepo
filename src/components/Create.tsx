@@ -128,6 +128,22 @@ function SetCreate() {
   );
 
   return (
+    
+    <div className="header">
+    <div className="header">
+      <div className="header">
+    <a href="#default" className="nftpoolparty">NFT Pool Party</a>
+    <a className="active" href="#create">Create</a>
+    <a href="#shop">Shop</a>
+    <a href="#swap">Swap</a>
+    <a href="#pool">Pool</a>
+    <a href="#analytics">Analytics</a>
+    <div className="#wallet">
+    <a href="#wallet"> Wallet</a></div>
+  </div>
+  </div>    
+  
+  
     <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg`}>
       <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">
         <FormFieldWrapperAndLabel label="Name">
@@ -198,7 +214,7 @@ function SetCreate() {
         {isSuccess && <div>Contract created!</div>}
         {contractAddress && <>contract address: {contractAddress}</>}
       </form>
-    </div>
+    </div>    </div>
   );
 
   // return (
