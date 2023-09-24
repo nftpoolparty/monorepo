@@ -180,21 +180,16 @@ function SetCreate() {
             />
           </FormFieldWrapperAndLabel>
           <FormFieldWrapperAndLabel label="NFT Media">
-            {/* <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-          /> */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={tokenURI} title="nft-media" width={200} />
-            <input
-              type="text"
-              value={tokenURI}
-              disabled
-              className="w-full bg-gray-400 rounded"
-            />
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={tokenURI} title="nft-media" width={200} />
+              <input
+                type="text"
+                value={tokenURI}
+                disabled
+                className="w-full bg-gray-400 rounded"
+              />
+            </>
           </FormFieldWrapperAndLabel>
           <FormFieldWrapperAndLabel label="Max Supply">
             <input

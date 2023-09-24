@@ -5,7 +5,7 @@ export function FormFieldWrapperAndLabel({
   children,
 }: {
   label: string;
-  children: JSX.Element;
+  children?: JSX.Element;
 }) {
   return (
     <div className="mb-4">
