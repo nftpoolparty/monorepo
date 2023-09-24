@@ -1,1 +1,0 @@
-forge script contracts/script/Deploy.s.sol --rpc-url https://sepolia-rpc.scroll.io/ --legacy --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --etherscan-api-key asdfasdf --verifier-url https://sepolia-blockscout.scroll.io/api? --verifier blockscout --resume 
