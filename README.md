@@ -12,3 +12,12 @@ This is an ETHNY 2023 hackathon project so the code is very messy and definitely
 - [UniNftRouter](./contracts/UniNftRouter.sol): The canonical entry point contract for creating and interacting with these pools.
 - [UniNftToken](./contracts/UniNftToken.sol): The creator's ERC721 token that gets minted by the pool.
 - [UniNftHook](./contracts/UniNftHook.sol): The Uniswap V4 hook contract, which also acts as the virtual ERC20 token for one half of the pool's reserves.
+
+## Contract Deployments
+
+The UniNftRouter and it's related contracts are deployed to Scroll Sepolia and Base Goerli:
+
+| Contract Name | Chain | Address |
+| ------------- | ----- | ------- |
+| UniNftRouter | Scroll Sepolia | [0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817](https://sepolia-blockscout.scroll.io/address/0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817/contracts#address-tabs) |
+| UniNftRouter | Base Goerli | [0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6](https://goerli.basescan.org/address/0x5052ca1471ac16821cbfaa0b1219da6351c8d0a6#code) | 
