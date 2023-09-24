@@ -69,8 +69,6 @@ function SetCreate() {
     args: [name, symbol, tokenURI, fee, address!, saltStart],
   });
 
-  console.log({ hookSalt, enabled: Boolean(hookSalt) && !isFetching });
-
   /* create args:
         string memory nftName,
         string memory nftSymbol,

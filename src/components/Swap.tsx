@@ -172,8 +172,6 @@ function Sell({ nftContractAddress }: { nftContractAddress: Address }) {
 
   const tokenId = (tokenIds && tokenIds[0]) || null;
 
-  console.log({ tokenIds });
-
   const minPrice = 1n;
 
   const { data: sellEstimationResult } = usePrepareUniNftRouterSellNft({
