@@ -29,9 +29,45 @@ contract SysTest is Test {
             MAX_SUPPLY,
             "",
             FEE,
-            router.findHookSalt("TEST", "TST", "", FEE, address(this), 1)
+            router.findHookSalt("TEST", "TST", "", FEE, address(this), 12345)
         );
         nftToken.setApprovalForAll(address(router), true);
+    }
+
+    function test_canQuoteCreate() external {
+        uint256 salt = router.findHookSalt("??", "??", "??", FEE, address(this), 123);
+        (UniNftToken expectedNft, uint256 expectedEthUsed, uint256 expectedPrice) = router.quoteCreate(
+            "??",
+            "??",
+            MAX_SUPPLY,
+            "??",
+            FEE,
+            salt,
+            0.1 ether
+        );
+        (UniNftToken actualNft, uint256 actualEthUsed) = router.create{ value: 0.1 ether}(
+            "??",
+            "??",
+            MAX_SUPPLY,
+            "??",
+            FEE,
+            salt
+        );
+        assertEq(address(expectedNft), address(actualNft));
+        assertEq(expectedEthUsed, actualEthUsed);
+        uint256 actualPrice = router.quoteBuyNft(actualNft);
+        assertEq(expectedPrice, actualPrice);
+    }
+
+    function test_canQuoteBuy() external {
+        uint256 expectedPrice = router.quoteBuyNft(nftToken);
+        uint256 actualPrice = router.buyNft{value: 1 ether}(
+            nftToken,
+            type(uint256).max, 
+            address(this),
+            ""
+        );
+        assertEq(expectedPrice, actualPrice);
     }
 
     function test_canMint() external {
@@ -64,7 +100,7 @@ contract SysTest is Test {
         );
     }
 
-    function test_canMintThenSellThenBuy() external {
+    function test_canMintThenSellThenBuyThenMint() external {
         router.buyNft{value: 1 ether}(
             nftToken,
             type(uint256).max, 
@@ -79,6 +115,14 @@ contract SysTest is Test {
         );
         vm.expectEmit(true, true, true, false);
         emit Transfer(address(nftToken), address(this), 1);
+        router.buyNft{value: 1 ether}(
+            nftToken,
+            type(uint256).max, 
+            address(this),
+            ""
+        );
+        vm.expectEmit(true, true, true, false);
+        emit Transfer(address(0), address(this), 2);
         router.buyNft{value: 1 ether}(
             nftToken,
             type(uint256).max, 
