@@ -22,7 +22,6 @@ import { parseCreateReceipt } from "../utils/txParsing";
 import { FormFieldWrapperAndLabel, ProcessingMessage } from "./Forms";
 import Link from "next/link";
 
-
 export function Create() {
   return (
     <div>
@@ -42,7 +41,9 @@ function SetCreate() {
   */
   const [name, setName] = useState("My Name");
   const [symbol, setSymbol] = useState("MNFT");
-  const [tokenURI, setTokenURI] = useState("ipfs.io//ipfs");
+  const [tokenURI, setTokenURI] = useState(
+    "https://ipfs.io/ipfs/QmQVwFtPdAVPgJLnXFwqVtFKGymgTVGCKdQttjWtHLhTZB/NounsNftImage.jpg"
+  );
   const [maxSupply, setMaxSupply] = useState(100n);
   const [initialPrice, setInitialPrice] = useState<`${number}`>(
     () => parseEther("0.1").toString() as `${number}`
@@ -155,94 +156,112 @@ function SetCreate() {
     },
     [write]
   );
- 
-  return ( 
-  
-  <div className="Formizzle">
-    <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg mt-2`}>
-      <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">
-        <FormFieldWrapperAndLabel label="Name">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name"
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Symbol">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="symbol"
-            type="text"
-            placeholder="Symbol"
-            value={symbol}
-            onChange={(e) => setSymbol(e.target.value)}
-          />
-        </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Image">
-          <input
+
+  return (
+    <div className="Formizzle">
+      <div className={`max-w-md mx-auto bg-purple-500 p-4 rounded-lg mt-2`}>
+        <form onSubmit={handleSubmit} className="bg-purple-500 rounded-lg p-4">
+          <FormFieldWrapperAndLabel label="Name">
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="name"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </FormFieldWrapperAndLabel>
+          <FormFieldWrapperAndLabel label="Symbol">
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="symbol"
+              type="text"
+              placeholder="Symbol"
+              value={symbol}
+              onChange={(e) => setSymbol(e.target.value)}
+            />
+          </FormFieldWrapperAndLabel>
+          <FormFieldWrapperAndLabel label="NFT Media">
+            {/* <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="image"
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-          />
-        </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Max Supply">
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="maxSupply"
-            type="number"
-            step={1}
-            placeholder="Max Supply"
-            value={maxSupply.toString()}
-            onChange={handleMaxSupplyChanged}
-          />
-        </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="Initial liquidity to provide">
-          <div className="relative mt-2 rounded-md shadow-sm">
+          /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={tokenURI} title="nft-media" width={200} />
+            <input
+              type="text"
+              value={tokenURI}
+              disabled
+              className="w-full bg-gray-400 rounded"
+            />
+          </FormFieldWrapperAndLabel>
+          <FormFieldWrapperAndLabel label="Max Supply">
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="initialPrice"
+              id="maxSupply"
               type="number"
-              step="0.001"
-              placeholder="Initial liquidity to provide"
-              value={formatEther(BigInt(initialPrice))}
-              onChange={handlePricePerTokenChanged}
+              step={1}
+              placeholder="Max Supply"
+              value={maxSupply.toString()}
+              onChange={handleMaxSupplyChanged}
             />
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              <span className="text-gray-500 sm:text-sm" id="price-currency">
-                ETH
-              </span>
+          </FormFieldWrapperAndLabel>
+          <FormFieldWrapperAndLabel label="Initial liquidity to provide">
+            <div className="relative mt-2 rounded-md shadow-sm">
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="initialPrice"
+                type="number"
+                step="0.001"
+                placeholder="Initial liquidity to provide"
+                value={formatEther(BigInt(initialPrice))}
+                onChange={handlePricePerTokenChanged}
+              />
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                <span className="text-gray-500 sm:text-sm" id="price-currency">
+                  ETH
+                </span>
+              </div>
             </div>
+          </FormFieldWrapperAndLabel>
+          <FormFieldWrapperAndLabel
+            label={`Initial token price: ${
+              tokenPrice ? `${formatEther(tokenPrice)} ETH` : ""
+            }`}
+          ></FormFieldWrapperAndLabel>
+          <div className="flex items-center justify-between">
+            <button
+              className="bg-white text-purple font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+              disabled={!write || isLoading}
+            >
+              Create
+            </button>
           </div>
-        </FormFieldWrapperAndLabel>
-        <FormFieldWrapperAndLabel label="First token price">
-          <label>{tokenPrice ? `${formatEther(tokenPrice)} ETH` : null}</label>
-        </FormFieldWrapperAndLabel>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-white text-purple font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-            disabled={!write || isLoading}
-          >
-            Create
-          </button>
-        </div>
-        {isError && error && <div>{error.message}</div>}
-        {isLoading && <ProcessingMessage hash={data?.hash} />}
-        {isSuccess && <div>Contract created!</div>}
-        {contractAddress && (
-          <div className="text-white">
-            NFT Contract Created:{" "}
-            <Link href={`/swap?contract=${contractAddress}`}>
+          {isError && error && <div>{error.message}</div>}
+          {isLoading && <ProcessingMessage hash={data?.hash} />}
+          {isSuccess && !contractAddress && (
+            <div>Transaction succeeded...waiting for receipt </div>
+          )}
+          {contractAddress && (
+            <div className="text-white font-bold">
+              NFT Contract & LP Created:
+              <br />
               {contractAddress}
-            </Link>
-          </div>
-        )}
-      </form>
-    </div></div>
+              <br />
+              <Link
+                href={`/swap?contract=${contractAddress}`}
+                className="underline"
+              >
+                Mint NFTs on Contract
+              </Link>
+            </div>
+          )}
+        </form>
+      </div>
+    </div>
   );
 }

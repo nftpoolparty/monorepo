@@ -5,7 +5,7 @@ import { Connect } from "../components/Connect";
 import { Connected } from "../components/Connected";
 
 export const metadata = {
-  title: "wagmi",
+  title: "NFT Pool Party",
   icons: {
     icon: "/images/favicon.ico",
   },

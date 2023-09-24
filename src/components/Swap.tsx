@@ -19,7 +19,10 @@ import {
   useUniNftTokenBalanceOf,
   useUniNftTokenGetTokenIdsByOwner,
   useUniNftTokenIsApprovedForAll,
+  useUniNftTokenName,
   useUniNftTokenSetApprovalForAll,
+  useUniNftTokenSymbol,
+  useUniNftTokenTokenUri,
 } from "../generated";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { ProcessingMessage } from "./Forms";
@@ -30,6 +33,19 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
 
   const { data: buyEstimation } = usePrepareUniNftRouterQuoteBuyNft({
     args: [nftContractAddress],
+  });
+
+  const { data: tokenUri } = useUniNftTokenTokenUri({
+    address: nftContractAddress,
+    args: [1n],
+  });
+
+  const { data: tokenName } = useUniNftTokenName({
+    address: nftContractAddress,
+  });
+
+  const { data: tokenSymbol } = useUniNftTokenSymbol({
+    address: nftContractAddress,
   });
 
   const price = buyEstimation ? buyEstimation.result : null;
@@ -76,12 +92,18 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="relative my-4 px-3 py-2.5 rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+        <img src={tokenUri} title="nft-media" width={200} />
+        <span className="text-white">
+          {tokenName} {tokenSymbol}
+        </span>
+      </div>
       <div className="relative rounded-md my-4 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 bg-white">
         <label
           htmlFor="quantity"
           className="block text-xs font-medium text-gray-900"
         >
-          You Buy
+          Mint
         </label>
         <input
           type="number"
@@ -96,31 +118,17 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
         />
         <div className="pointer-events-none absolute inset-y-0 right-10 top-5 flex items-center pr-3 text-gray-700">
           <span className="text-gray-500 sm:text-sm" id="price-currency">
-            NFTs
+            {tokenSymbol} NFTs
           </span>
         </div>
       </div>
-      <div className="relative rounded-md my-4 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 bg-white">
+      <div className="relative my-4 px-3 py-2.5 rounded shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
         <label
           htmlFor="quantity"
-          className="block text-xs font-medium text-gray-900"
+          className="block text-lg font-medium text-white"
         >
-          You Pay
+          Mint Price: {formatEther(totalCost)} ETH
         </label>
-        <input
-          type="number"
-          step="1"
-          name="quantity"
-          id="quantity"
-          className="appearance-none border-none w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={formatEther(totalCost)}
-          onChange={preventChange}
-        />
-        <div className="pointer-events-none absolute inset-y-0 right-10 top-5 flex items-center pr-3 text-gray-700">
-          <span className="text-gray-500 sm:text-sm" id="price-currency">
-            ETH
-          </span>
-        </div>
       </div>
       <div className="flex items-center justify-between">
         <button
@@ -128,7 +136,7 @@ function Buy({ nftContractAddress }: { nftContractAddress: Address }) {
           type="submit"
           disabled={!write || isLoading}
         >
-          Mint
+          Mint {Number(quantity)} NFT(s)
         </button>
       </div>
       {isError && error && <div>{error.message}</div>}
@@ -351,7 +359,7 @@ export function Swap() {
               tab === mode
                 ? "bg-gray-100 text-gray-700 border-black border-2"
                 : "text-gray-500 hover:text-gray-700 border-2",
-              "rounded-md px-3 py-2 text-sm font-medium"
+              "rounded-md px-3 py-2 text-sm font-bold"
             )}
             aria-current={tab === "mode" ? "page" : undefined}
           >
