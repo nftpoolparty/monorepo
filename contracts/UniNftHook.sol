@@ -4,21 +4,30 @@ pragma solidity ^0.8.21;
 import {Hooks} from 'v4-core/libraries/Hooks.sol';
 import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/types/PoolKey.sol";
+import {PoolId} from "v4-core/types/PoolId.sol";
 import {Currency} from "v4-core/types/Currency.sol";
 import {BaseHook} from './BaseHook.sol';
 import {UniNftToken} from "./UniNftToken.sol";
 import {LibUniNft} from "./LibUniNft.sol";
 import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
+import {PoolIdLibrary} from "v4-core/types/PoolId.sol";
 
 
 contract UniNftHook is BaseHook {
+    using PoolIdLibrary for PoolKey;
+    
     UniNftToken public immutable NFT;
-    address immutable ROUTER;
     uint256 public constant decimals = 18;
     uint256 totalSupply;
+    bool isPoolSeeded;
     uint24 _fee;
     string public name;
     string public symbol;
+
+    modifier onlyManager() {
+        require(msg.sender == address(poolManager), 'not manager');
+        _;
+    }
 
     constructor(
         IPoolManager mgr,
@@ -27,7 +36,6 @@ contract UniNftHook is BaseHook {
         string memory symbol_,
         string memory tokenUri
     ) BaseHook(mgr) {
-        ROUTER = msg.sender;
         NFT = new UniNftToken(mgr, this, fee, name_, symbol_, tokenUri);
         name = name_;
         symbol = symbol_;
@@ -55,7 +63,7 @@ contract UniNftHook is BaseHook {
             beforeInitialize: false,
             afterInitialize: false,
             beforeModifyPosition: false,
-            afterModifyPosition: false,
+            afterModifyPosition: true,
             beforeSwap: false,
             afterSwap: true,
             beforeDonate: false,
@@ -63,14 +71,22 @@ contract UniNftHook is BaseHook {
         });
     }
 
-    function mintToPool(uint256 amount) external {
-        // TODO: Won't need this with initialize hook. 
-        require(msg.sender == ROUTER, 'not router');
-        totalSupply += amount;
-    }
-    
-    function _burnFromPool(uint256 amount) private {
-        totalSupply -= amount;
+    function afterModifyPosition(
+        address sender,
+        PoolKey calldata key,
+        IPoolManager.ModifyPositionParams calldata params,
+        BalanceDelta delta,
+        bytes calldata hookData
+    )
+        external override onlyManager
+        returns (bytes4)
+    {
+        if (!isPoolSeeded) {
+            assert(delta.amount1() >= 0);
+            isPoolSeeded = true;
+            totalSupply += uint128(delta.amount1());
+        }
+        return this.afterModifyPosition.selector;
     }
 
     function afterSwap(
@@ -80,7 +96,8 @@ contract UniNftHook is BaseHook {
         BalanceDelta delta,
         bytes calldata hookData
     )
-        external override returns (bytes4)
+        external override onlyManager
+        returns (bytes4)
     {
         int128 ethNeeded = delta.amount0();
         int128 erc20Needed = delta.amount1();

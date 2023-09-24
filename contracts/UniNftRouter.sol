@@ -93,7 +93,7 @@ contract UniNftRouter is ILockCallback {
         external view
         returns (uint256 salt)
     {
-        uint256 PREFIX = Hooks.AFTER_SWAP_FLAG;
+        uint256 PREFIX = Hooks.AFTER_SWAP_FLAG | Hooks.AFTER_MODIFY_POSITION_FLAG;
         uint256 LEADING_BIT_MASK = 255 << 152;
         bytes32 initHash = keccak256(abi.encodePacked(
             type(UniNftHook).creationCode,
@@ -178,7 +178,6 @@ contract UniNftRouter is ILockCallback {
             FixedPointMathLib.sqrt(value)
         );
         MGR.initialize(key, initialPrice, "");
-        // TODO: Move this all to initalize hook?
         // TODO: This should be from [initialPrice, inf+)?
         int24 tickLower = (TickMath.MIN_TICK / key.tickSpacing) * key.tickSpacing;
         int24 tickUpper = (TickMath.MAX_TICK / key.tickSpacing) * key.tickSpacing;
@@ -192,18 +191,17 @@ contract UniNftRouter is ILockCallback {
             value,
             maxSupply * uint128(LibUniNft.RESOLUTION)
         ));
+        // DANGER!
+        // TODO: This needs to be called by a dedicated addressed controlled by the creator.
         BalanceDelta delta = MGR.modifyPosition(key, params, "");
         int128 ethNeeded = delta.amount0();
         int128 erc20Needed = delta.amount1();
         if (ethNeeded > 0) {
-            // currency0 is always ETH
             MGR.settle{value: uint128(ethNeeded)}(Currency.wrap(address(0)));
         } else {
             ethNeeded = 0;
         }
         if (erc20Needed > 0) {
-            // currency1 is always the hook contract (ERC20)
-            hook.mintToPool(uint128(erc20Needed));
             MGR.settle(Currency.wrap(address(hook))); 
         }
         return abi.encode(ethNeeded);
