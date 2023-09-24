@@ -1,16 +1,30 @@
 import { configureChains, createConfig } from 'wagmi'
-import { foundry, scrollTestnet } from 'wagmi/chains'
+import { foundry, scrollTestnet, baseGoerli } from 'wagmi/chains'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 import { publicProvider } from 'wagmi/providers/public'
 
-import '@rainbow-me/rainbowkit/styles.css';
+const scrollSepolia = {
+  ...scrollTestnet,
+  id: 534351,
+  rpcUrls: {
+    default: {
+      http: ['https://sepolia-rpc.scroll.io/'],
+    },
+    public: {
+      http: ['https://sepolia-rpc.scroll.io/']
+    }
+  }
+}
+
+scrollTestnet.rpcUrls
+
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    scrollTestnet,
+    scrollSepolia,
     ...(process.env.NODE_ENV === 'development' ? [foundry] : []),
   ],
   [
@@ -39,5 +53,3 @@ export const config = createConfig({
   publicClient,
   webSocketPublicClient,
 })
-
-export { chains}

@@ -1,1 +1,1 @@
-forge script contracts/script/Deploy.s.sol --rpc-url https://eth-sepolia-public.unifra.io --broadcast --verifier-url https://sepolia-blockscout.scroll.io/api? --verifier blockscout
+forge script script/Deploy.s.sol --rpc-url https://sepolia-rpc.scroll.io/ --legacy --with-gas-price $(cast to-wei 0.01 gwei) --broadcast --verify --verifier-url https://sepolia-blockscout.scroll.io/api\? --verifier blockscout --resume
