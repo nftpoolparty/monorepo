@@ -1,0 +1,14 @@
+/* styles/fonts.css */
+
+/* Define the font-face for your custom font */
+@font-face {
+  font-family: 'SpaceTimeRegular';
+  src: url('/fonts/SpaceTimeRegular.ttf') format('truetype'); /* Use the correct path and format for your font */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Apply the custom font to specific elements or globally */
+body {
+  font-family: 'SpaceTimeRegular', sans-serif; /* Use your font-family name */
+}

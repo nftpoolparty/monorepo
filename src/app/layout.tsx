@@ -8,77 +8,57 @@ import { Connected } from "../components/Connected";
 export const metadata = {
   title: "wagmi",
   icons: {
-    icon: "./public/images/favicon.ico",
+    icon: "/images/favicon.ico",
   },
 };
 
 import Image from 'next/image';
+import { NotConnected } from "../components/NotConnected";
 
 function MyComponent () {
   return (
+    <div  className="navvy">
+      {/* Replace 'your-image.jpg' with the actual path to your image */}
+      <Image 
+        src="/images/android-chrome-512x512.png" // Path to your image in the 'public' directory
+        alt="Description of your image"
+        width={1920} // Set the width of the image
+        height={1080} // Set the height of the image
+      />
+    </div>
+  );
+}
+function Nav () {
+  return (
     <div  className="nav">
       {/* Replace 'your-image.jpg' with the actual path to your image */}
-
+      <Image 
+        src="/images/android-chrome-512x512.png" // Path to your image in the 'public' directory
+        alt="Description of your image"
+        width={512} // Set the width of the image
+        height={512} // Set the height of the image
+      />
     </div>
   );
 }
 
-
 function Header() {
   return (
     <div className="header">
-      <Image 
-        src="/images/android-chrome-192x192.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={100} // Set the width of the image
-        height={100} // Set the height of the image
-      />
+      
+
       <a href="#default" className="nftpoolparty">
         NFT Pool Party 
       </a>
-      <Image 
-        src="/images/home.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
+     
       <a className="active" href="#create">
         Create
-      </a>
-      <Image 
-        src="/images/writing.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
-      <a href="#shop">Shop </a>
-      <Image 
-        src="/images/shopping-bag.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
+      </a> 
+
       <a href="#swap">Swap</a>
-      <Image 
-        src="/images/alter.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
+
       <a href="#pool">Pool</a>
-      <Image 
-        src="/images/swim.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
-      <a href="#analytics">Analytics</a>
-      <Image 
-        src="/images/stats.png" // Path to your image in the 'public' directory
-        alt="Description of your image"
-        width={50} // Set the width of the image
-        height={50} // Set the height of the image
-      />
+
       <div className="wallet">
       <Connect />
       </div>
@@ -87,7 +67,7 @@ function Header() {
   );
 }
    
-
+<div> </ div>
 export default function RootLayout({
   children,
 }: {
@@ -100,6 +80,9 @@ export default function RootLayout({
         <Providers>
           <Header />
           <Connected>{children}</Connected>
+          <NotConnected>      
+          <MyComponent></MyComponent>
+          </NotConnected>
         </Providers>
       </body>
     </html>
