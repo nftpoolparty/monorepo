@@ -43,6 +43,18 @@ contract UniNftToken is ERC721 {
         return _tokenIdsByOwner[owner];
     }
 
+    function transferFrom(
+        address from,
+        address to,
+        uint256 id
+    )
+        public override
+    {
+       _removeFromOwnerList(from, id) ;
+       _addToOwnerList(to, id) ;
+        super.transferFrom(from, to, id);
+    }
+
     function stash(address owner, uint256 tokenId) external onlyHook {
         require(owner != address(0) && _ownerOf[tokenId] == owner, 'cannot stash');
         _ownerOf[tokenId] = address(this);
@@ -50,6 +62,8 @@ contract UniNftToken is ERC721 {
             --_balanceOf[owner];
             ++_balanceOf[address(this)];
         }
+        _removeFromOwnerList(owner, tokenId);
+        _addToOwnerList(address(this), tokenId);
         delete getApproved[tokenId];
         _stashedTokenIds.push(tokenId);
         emit Transfer(owner, address(this), tokenId);
@@ -77,5 +91,28 @@ contract UniNftToken is ERC721 {
 
     function tokenURI(uint256) public view override returns (string memory) {
         return _tokenUri;
+    }
+
+    function _removeFromOwnerList(address owner, uint256 tokenId) private {
+        uint256[] storage tokenIds = _tokenIdsByOwner[owner];
+        uint256 n = tokenIds.length;
+        for (uint256 i = 0; i < n; ++i) {
+            if (tokenIds[i] == tokenId) {
+                tokenIds[i] = tokenIds[n - 1];
+                tokenIds.pop();
+                break;
+            }
+        }
+    }
+
+    function _addToOwnerList(address owner, uint256 tokenId) private {
+        uint256[] storage tokenIds = _tokenIdsByOwner[owner];
+        uint256 n = tokenIds.length;
+        for (uint256 i = 0; i < n; ++i) {
+            if (tokenIds[i] == tokenId) {
+                return;
+            }
+        }
+        tokenIds.push(tokenId);
     }
 }

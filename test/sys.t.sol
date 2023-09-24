@@ -94,7 +94,7 @@ contract SysTest is Test {
         emit Transfer(address(router), address(nftToken), 1);
         router.sellNft(
             nftToken,
-            1,   
+            1,
             1, 
             payable(this)
         );
