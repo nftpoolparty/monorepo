@@ -11,6 +11,26 @@ export const metadata = {
   }
 };
 
+
+function Header () {
+
+  return (
+    <div className="header">
+
+  <a href="#default" className="nftpoolparty">NFT Pool Party</a>
+  <a className="active" href="#create">Create</a>
+  <a href="#shop">Shop</a>
+  <a href="#swap">Swap</a>
+  <a href="#pool">Pool</a>
+  <a href="#analytics">Analytics</a>
+  <div className="wallet">
+  
+          <Connect />
+          
+          </div>
+</div>  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -18,11 +38,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      
       {/* <head><link rel="icon" href="/Favicon/favicon.ico" sizes="any" /></head> */}
       <body>
-        <Providers>
-          <Connect />
 
+
+        <Providers>
+
+        <Header />
           <Connected>{children}</Connected>
         </Providers>
       </body>

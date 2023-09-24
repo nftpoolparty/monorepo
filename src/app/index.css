@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.body{
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  
+}
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
@@ -30,7 +36,7 @@
 
 /* Change the background color on mouse-over */
 .header a:hover {
-  background-color: 00a25a;
+  background-color: #00a25a;
   color: black;
 }
 
@@ -57,5 +63,12 @@
 }
 
 .wallet {
-    text-align: center; 
+    float: right;
+    padding-right: 30px;
+
+}
+
+
+.Fizzorm {
+  align-content: center;
 }
