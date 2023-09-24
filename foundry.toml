@@ -1,8 +1,10 @@
 [profile.default]
-src = 'contracts'
-libs = ['node_modules']
-solc = '0.8.13'
-
-allow_paths = ["node_modules"]
+src = "contracts"
+out = "out"
+solc_version = '0.8.21'
+libs = ["lib"]
+optimizer_runs=10
+via_ir=true
+revert_strings="strip"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config

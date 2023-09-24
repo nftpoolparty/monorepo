@@ -7,9 +7,9 @@ export default defineConfig({
   plugins: [
     foundry({
       deployments: {
-        NftPoolFactory: {
-          [chains.foundry.id]: '0xdc64a140aa3e981100a9beca4e685f962f0cf6c9',
-          [534351]: '0x131F554482F26206A33acf5A22E89A91c5D91f9A'
+        UniNftRouter: {
+          [chains.foundry.id]: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
+          [534351]: '0xA631FFd30AedD6eDc4B30a9Ad55a8b9776718817'
         }
       },
     }),

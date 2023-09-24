@@ -12,7 +12,9 @@ contract Deploy is Script {
     function run() public {
         uint256 deployer = vm.envUint("DEPLOYER_PRIVATE_KEY");
 
+        PoolManager poolManager = PoolManager(payable(0xA449635FaAA6b5a45a568fCe217Bb7921c992285));
+
         vm.startBroadcast(deployer);
-        new UniNftRouter(new PoolManager(50_000));
+        new UniNftRouter(poolManager);
     }
 }
