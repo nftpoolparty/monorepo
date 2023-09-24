@@ -4466,7 +4466,7 @@ export const uniNftRouterABI = [
  * - [__View Contract on Scroll Sepolia Blockscout__](https://sepolia-blockscout.scroll.io/address/0x2093fa634730172d29c618879428336b021f7732)
  */
 export const uniNftRouterAddress = {
-  31337: '0x12975173B87F7595EE45dFFb2Ab812ECE596Bf84',
+  31337: '0xd04fF4A75Edd737A73E92b2F2274Cb887d96E110',
   534351: '0x2093FA634730172d29C618879428336b021f7732',
 } as const
 
