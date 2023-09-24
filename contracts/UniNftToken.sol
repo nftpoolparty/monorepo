@@ -81,6 +81,7 @@ contract UniNftToken is ERC721 {
         } else {
             // Mint new token.
             tokenId = ++_lastTokenId;
+            _addToOwnerList(receiver, tokenId);
             _safeMint(receiver, tokenId, receiverData);
         }
     }
