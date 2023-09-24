@@ -15,6 +15,7 @@ contract UniNftToken is ERC721 {
     uint24 private immutable _fee;
     uint256 private _lastTokenId;
     uint256[] private _stashedTokenIds;
+    mapping (address => uint256[]) private _tokenIdsByOwner;
 
     constructor(
         IPoolManager mgr,
@@ -33,6 +34,13 @@ contract UniNftToken is ERC721 {
     modifier onlyHook() {
         require(msg.sender == address(HOOK), 'not hook');
         _;
+    }
+
+    function getTokenIdsByOwner(address owner)
+        external view
+        returns (uint256[] memory tokenIds)
+    {
+        return _tokenIdsByOwner[owner];
     }
 
     function stash(address owner, uint256 tokenId) external onlyHook {

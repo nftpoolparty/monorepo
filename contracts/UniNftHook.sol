@@ -53,7 +53,7 @@ contract UniNftHook is BaseHook {
         return 0;
     }
 
-    function transfer(address to, uint256 amount) external returns (bool) {
+    function transfer(address, uint256) external pure returns (bool) {
         // No-op. 
         return true;
     }
@@ -72,11 +72,11 @@ contract UniNftHook is BaseHook {
     }
 
     function afterModifyPosition(
-        address sender,
-        PoolKey calldata key,
-        IPoolManager.ModifyPositionParams calldata params,
+        address,
+        PoolKey calldata,
+        IPoolManager.ModifyPositionParams calldata,
         BalanceDelta delta,
-        bytes calldata hookData
+        bytes calldata
     )
         external override onlyManager
         returns (bytes4)
@@ -91,8 +91,8 @@ contract UniNftHook is BaseHook {
 
     function afterSwap(
         address sender,
-        PoolKey calldata key,
-        IPoolManager.SwapParams calldata params,
+        PoolKey calldata,
+        IPoolManager.SwapParams calldata,
         BalanceDelta delta,
         bytes calldata hookData
     )

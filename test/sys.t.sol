@@ -131,8 +131,9 @@ contract SysTest is Test {
         );
     }
 
-    function onERC721Received(address owner, address operator, uint256 tokenId, bytes calldata data)
+    function onERC721Received(address, address, uint256 tokenId, bytes calldata)
         external
+        view
         returns (bytes4)
     {
         console.log('received token id', tokenId);
